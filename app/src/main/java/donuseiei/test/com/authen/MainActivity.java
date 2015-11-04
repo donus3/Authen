@@ -1,5 +1,6 @@
 package donuseiei.test.com.authen;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,17 +26,7 @@ import donuseiei.test.com.authen.page.Profile_page;
 import donuseiei.test.com.authen.page.Registe_page;
 import donuseiei.test.com.authen.page.Report_page;
 
-public class MainActivity extends AppCompatActivity
-        implements Plan_page.OnFragmentInteractionListener,
-        Login_page.OnFragmentInteractionListener,
-        Registe_page.OnFragmentInteractionListener,
-        Dash_page.OnFragmentInteractionListener,
-        Report_page.OnFragmentInteractionListener,
-        Bill_page.OnFragmentInteractionListener,
-        Mail_page.OnFragmentInteractionListener,
-        Profile_page.OnFragmentInteractionListener,
-        AllDash_page.OnFragmentInteractionListener
-       {
+public class MainActivity extends AppCompatActivity {
 
     private RadioButton dash;
     private RadioButton plan;
@@ -47,6 +38,8 @@ public class MainActivity extends AppCompatActivity
     private final int clickColor = Color.rgb(19,90,145);
     private String id;
     private String password;
+    private String info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +48,7 @@ public class MainActivity extends AppCompatActivity
         Bundle bundle = getIntent().getExtras();
         id = bundle.getString("id");
         password = bundle.getString("password");
-        Log.i("id", id);
-        Log.i("main",password);
+        info = bundle.getString("info");
         //construct tab button
         dash = (RadioButton)findViewById(R.id.btnDash);
         plan = (RadioButton)findViewById(R.id.btnPlan);
@@ -119,6 +111,7 @@ public class MainActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
         bundle.putString("password",password);
+        bundle.putString("info",info);
         // set Fragmentclass Arguments
         f.setArguments(bundle);
         transaction.commit();
@@ -148,12 +141,16 @@ public class MainActivity extends AppCompatActivity
                 tog.setBackgroundColor(oldColor);
                 replacePage(new Profile_page());
                 return true;
+            case R.id.home:
+                tog.setBackgroundColor(oldColor);
+                Intent intent = new Intent(this,CloudListActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("password",password);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        //
-    }
+
 }

@@ -8,8 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import donuseiei.test.com.authen.page.Login_page;
 import donuseiei.test.com.authen.page.Registe_page;
 
-public class MainManager extends AppCompatActivity implements  Login_page.OnFragmentInteractionListener,
-                                                                Registe_page.OnFragmentInteractionListener{
+public class MainManager extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +18,5 @@ public class MainManager extends AppCompatActivity implements  Login_page.OnFrag
         FragmentTransaction transaction_plan = getSupportFragmentManager().beginTransaction();
         transaction_plan.replace(R.id.container, fragment_login);
         transaction_plan.commit();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }

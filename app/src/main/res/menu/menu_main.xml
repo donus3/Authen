@@ -8,4 +8,10 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
 
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_account_box_black_36dp"
+        android:title="Home"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
 </menu>

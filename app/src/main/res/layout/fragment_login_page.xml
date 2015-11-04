@@ -52,9 +52,7 @@
         android:id="@+id/btn_register"
         android:layout_alignTop="@+id/submit_login"
         android:layout_alignRight="@+id/password_login"
-        android:layout_alignEnd="@+id/password_login"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_alignEnd="@+id/password_login" />
 
     <ImageView
         android:layout_width="150dp"

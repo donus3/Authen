@@ -41,16 +41,6 @@ public class View_plan extends Fragment {
     private Spinner dropdown;
     private List<String> ips;
 
-    // TODO: Rename and change types and number of parameters
-    public static View_plan newInstance(String param1, String param2) {
-        View_plan fragment = new View_plan();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public View_plan() {
         // Required empty public constructor
     }
@@ -63,9 +53,9 @@ public class View_plan extends Fragment {
         if (getArguments() != null) {
             id = getArguments().getString(ARG_PARAM1);
             password = getArguments().getString(ARG_PARAM2);
+            params = new RequestParams();
+            params.put("password", password);
         }
-        params = new RequestParams();
-        params.put("password", password);
     }
 
     @Override
@@ -132,7 +122,7 @@ public class View_plan extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ListView lv = (ListView)view_plan.findViewById(R.id.listPlanView);
-                List<ListItemPlan> itemsVM = new ArrayList<>();;
+                List<ListItemPlan> itemsVM = new ArrayList<>();
                 Plan p = listVM.get(position);
                 if(!itemsVM.isEmpty()){
                     itemsVM.removeAll(itemsVM);

@@ -1,6 +1,5 @@
 package donuseiei.test.com.authen.page;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,22 +16,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import donuseiei.test.com.authen.CloudListActivity;
 import donuseiei.test.com.authen.HTTPConnector;
 import donuseiei.test.com.authen.MainActivity;
 import donuseiei.test.com.authen.R;
 
 
 public class Login_page extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private  ProgressDialog prgDialog;
     private  Button submit;
@@ -42,21 +39,7 @@ public class Login_page extends Fragment {
     private String username;
     // Get Password Edit View Value
     private String password;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
-
-    // TODO: Rename and change types and number of parameters
-    public static Login_page newInstance(String param1, String param2) {
-        Login_page fragment = new Login_page();
-        Bundle args = new Bundle();
-        //args.putString(name_var1, param1);
-        //args.putString(name_var2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public Login_page() {
         // Required empty public constructor
@@ -65,10 +48,6 @@ public class Login_page extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            //mParam1 = getArguments().getString(name_var1);
-            //mParam2 = getArguments().getString(name_var2);
-        }
         prgDialog = new ProgressDialog(getActivity());
     }
 
@@ -122,7 +101,7 @@ public class Login_page extends Fragment {
                 try {
                     JSONObject json = new JSONObject(response);
                     if (!response.isEmpty()) {
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        Intent intent = new Intent(getActivity(), CloudListActivity.class);
                         intent.putExtra("id", json.getString("userId"));
                         intent.putExtra("password", json.getString("password"));
                         startActivity(intent);
@@ -148,33 +127,9 @@ public class Login_page extends Fragment {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 }
 
