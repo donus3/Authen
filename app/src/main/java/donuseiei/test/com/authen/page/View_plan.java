@@ -35,11 +35,10 @@ public class View_plan extends Fragment {
     // TODO: Rename and change types of parameters
     private String id;
     private String password;
+    private String cloudProv;
+    private String ip;
     private View view_plan;
-    private List<Plan> listVM;
     private RequestParams params;
-    private Spinner dropdown;
-    private List<String> ips;
 
     public View_plan() {
         // Required empty public constructor
@@ -48,13 +47,16 @@ public class View_plan extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listVM = new ArrayList<>();
-        ips = new ArrayList<>();
+
         if (getArguments() != null) {
             id = getArguments().getString(ARG_PARAM1);
             password = getArguments().getString(ARG_PARAM2);
+            cloudProv = getArguments().getString("cloudName");
+            ip = getArguments().getString("ip");
             params = new RequestParams();
             params.put("password", password);
+            params.put("vmIP",ip);
+            params.put("cloudProv",cloudProv);
         }
     }
 

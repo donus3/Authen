@@ -71,6 +71,8 @@ public class ChangePlane_page extends Fragment {
         if (getArguments() != null) {
             id = getArguments().getString(ARG_PARAM1);
             password = getArguments().getString(ARG_PARAM2);
+            cloundProv = getArguments().getString("cloudName");
+            ip = getArguments().getString("ip");
         }
         paramsGetPlan = new RequestParams();
         paramsGetPlan.put("password", password);
@@ -86,10 +88,10 @@ public class ChangePlane_page extends Fragment {
             @Override
             public void onClick(View v) {
                 RequestParams paramsUpdate = new RequestParams();
-                paramsUpdate.put("password",password);
-                paramsUpdate.put("ip",ip);
-                paramsUpdate.put("plan",indexPlan);
-                paramsUpdate.put("cloudProv",cloundProv);
+                paramsUpdate.put("password", password);
+                paramsUpdate.put("ip", ip);
+                paramsUpdate.put("plan", indexPlan);
+                paramsUpdate.put("cloudProv", cloundProv);
                 updatePlan(paramsUpdate);
             }
         });
@@ -97,7 +99,7 @@ public class ChangePlane_page extends Fragment {
         return view;
     }
 
-    public void createView(){
+    /*public void createView(){
         spinnerVM = (Spinner)view.findViewById(R.id.spinner_vp_change);
         if(!ips.isEmpty()){
             ips.removeAll(ips);
@@ -117,7 +119,7 @@ public class ChangePlane_page extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-    }
+    }*/
     public void CreatePlanAvailable(final int positionvm){
         spinnerplan = (Spinner)view.findViewById(R.id.spinner_vp_planAvailable);
         int index = 1;
@@ -240,10 +242,24 @@ public class ChangePlane_page extends Fragment {
                 for (int index = 0; index < bytes.length; index++) {
                     response += (char) bytes[index];
                 }
-                if(!listvm.isEmpty()){
+/*                if(!listvm.isEmpty()){
                     listvm.removeAll(listvm);
                 }
+                JSONObject json = null;*/
                 try {
+                    JSONObject json = new JSONObject(response);
+                    Plan plan = new Plan(
+                            json.getString("cloudProv"),
+                            json.getString("ip"),
+                            json.getString("monthlyRate"),
+                            json.getString("cpu"),
+                            json.getString("mem"),
+                            json.getString("network"),
+                            json.getString("storage"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                /*try {
                     JSONArray jsonarr = new JSONArray(response);
                     if (jsonarr.length() != 0) {
                         for (int index = 0; index < jsonarr.length(); index++) {
@@ -258,14 +274,14 @@ public class ChangePlane_page extends Fragment {
                                     json.getString("storage"));
                             listvm.add(c);
                         }
-                        createView();
+                        //createView();
                     } else {
                         Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
     }

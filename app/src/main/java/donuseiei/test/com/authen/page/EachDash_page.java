@@ -55,8 +55,6 @@ public class EachDash_page extends Fragment {
     private RequestParams params;
     private List<String> list_name;
     private View rootView;
-    private JSONObject update_json;
-    private JSONArray update_json_arr;
     private double cpu = 0;
     private double mem = 0;
     private double str = 0;
@@ -75,6 +73,7 @@ public class EachDash_page extends Fragment {
             ip = getArguments().getString("info").split(" : ")[1];
             params = new RequestParams();
             params.put("password",password);
+            params.put("vmIP",ip);
         }
         list_name = new ArrayList<>();
     }

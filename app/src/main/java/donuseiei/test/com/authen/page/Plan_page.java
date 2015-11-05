@@ -19,17 +19,9 @@ public class Plan_page extends Fragment {
     // TODO: Rename and change types of parameters
     private String id;
     private String password;
+    private String name;
+    private String ip;
     private FragmentTabHost mTabHost;
-
-    // TODO: Rename and change types and number of parameters
-    public static Plan_page newInstance(String param1, String param2) {
-        Plan_page fragment = new Plan_page();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public Plan_page() {
         // Required empty public constructor
@@ -41,6 +33,8 @@ public class Plan_page extends Fragment {
         if (getArguments() != null) {
             id = getArguments().getString(ARG_PARAM1);
             password = getArguments().getString(ARG_PARAM2);
+            name = getArguments().getString("info").split(" : ")[0];
+            ip = getArguments().getString("info").split(" : ")[1];
         }
     }
 
@@ -50,6 +44,9 @@ public class Plan_page extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("id",id);
         bundle.putString("password",password);
+        bundle.putString("cloudName",name);
+        bundle.putString("ip",ip);
+
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabHost_plan);
         mTabHost.addTab(mTabHost.newTabSpec("currentPlan").setIndicator("Current Plan"),
