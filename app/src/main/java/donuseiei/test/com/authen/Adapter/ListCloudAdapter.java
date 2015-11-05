@@ -15,10 +15,10 @@ import donuseiei.test.com.authen.R;
 
 public class ListCloudAdapter extends ArrayAdapter<ListCloud> {
     private LayoutInflater mInflater;
-    private final int color1 = Color.rgb(0,128,255);
-    private final int color2 = Color.rgb(0,204,104);
-    private final int color3 = Color.rgb(240,139,37);
-    private final int color4 = Color.rgb(255,51,51);
+    private final int color1 = Color.rgb(64,255,146);
+    private final int color2 = Color.rgb(255,251,125);
+    private final int color3 = Color.rgb(115,235,241);
+    private final int color4 = Color.rgb(255,136,94);
 
     public ListCloudAdapter(Context context, int resource,List<ListCloud> items) {
         super(context, resource);

@@ -28,6 +28,7 @@
             android:name=".MainActivity"
             android:label="cmc"
             android:noHistory="true"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait" >
         </activity>
         <activity

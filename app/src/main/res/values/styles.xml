@@ -69,9 +69,7 @@
         <item name="android:background">@color/blue_background</item>
         <item name="android:icon">@drawable/cmc_icon</item>
     </style>
-    <style name="ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:icon">@drawable/cloud_icon</item>
-    </style>
+
 
 
 

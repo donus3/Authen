@@ -50,7 +50,6 @@ public class ChangePlane_page extends Fragment {
     private ArrayList<Plan> listPlan;
     private ArrayList<Plan> listvm;
     private View view;
-    private Spinner spinnerVM;
     private Spinner spinnerplan;
     private List<String> ips;
     private List<String> planName;
@@ -73,9 +72,9 @@ public class ChangePlane_page extends Fragment {
             password = getArguments().getString(ARG_PARAM2);
             cloundProv = getArguments().getString("cloudName");
             ip = getArguments().getString("ip");
+            paramsGetPlan = new RequestParams();
+            paramsGetPlan.put("password", password);
         }
-        paramsGetPlan = new RequestParams();
-        paramsGetPlan.put("password", password);
     }
 
     @Override
@@ -95,32 +94,11 @@ public class ChangePlane_page extends Fragment {
                 updatePlan(paramsUpdate);
             }
         });
-        getVM(paramsGetPlan);
+        getPlan(paramsGetPlan);
         return view;
     }
 
-    /*public void createView(){
-        spinnerVM = (Spinner)view.findViewById(R.id.spinner_vp_change);
-        if(!ips.isEmpty()){
-            ips.removeAll(ips);
-        }
-        for(Plan item : listvm){
-            ips.add(item.getIp());
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,ips);
-        spinnerVM.setAdapter(adapter);
-        spinnerVM.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                getPlanByName(listvm.get(position).getProv(), position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }*/
-    public void CreatePlanAvailable(final int positionvm){
+    public void CreatePlanAvailable(final Plan plan){
         spinnerplan = (Spinner)view.findViewById(R.id.spinner_vp_planAvailable);
         int index = 1;
         if(!planName.isEmpty()){
@@ -137,20 +115,17 @@ public class ChangePlane_page extends Fragment {
                 indexPlan = position;
                 ListView lv = (ListView) view.findViewById(R.id.listChange);
                 List<ListItemChangePlan> itemsVM = new ArrayList<>();
-                Plan plan = listPlan.get(position);
-                Plan vm = listvm.get(positionvm);
-                ip = vm.getIp();
-                cloundProv = vm.getProv();
+                Plan plan_list = listPlan.get(position);
+                ip = plan.getIp();
+                cloundProv = plan.getProv();
                 if (!itemsVM.isEmpty()) {
                     itemsVM.removeAll(itemsVM);
                 } else {
-                    //itemsVM.add(new ListItemChangePlan("Cloud Provider", plan.getProv(),vm.getProv()));
-                    //itemsVM.add(new ListItemChangePlan("IP Address", plan.getIp(), vm.getIp()));
-                    itemsVM.add(new ListItemChangePlan("CPU", plan.getCpu(), vm.getCpu()));
-                    itemsVM.add(new ListItemChangePlan("Memory", plan.getMemory(), vm.getMemory()));
-                    itemsVM.add(new ListItemChangePlan("Network", plan.getMemory(), vm.getMemory()));
-                    itemsVM.add(new ListItemChangePlan("Storage", plan.getStorage(), vm.getStorage()));
-                    itemsVM.add(new ListItemChangePlan("Mountly Rate", plan.getMounthlyrate(), vm.getMounthlyrate()));
+                    itemsVM.add(new ListItemChangePlan("CPU", plan_list.getCpu(), plan.getCpu()));
+                    itemsVM.add(new ListItemChangePlan("Memory", plan_list.getMemory(), plan.getMemory()));
+                    itemsVM.add(new ListItemChangePlan("Network", plan_list.getMemory(), plan.getMemory()));
+                    itemsVM.add(new ListItemChangePlan("Storage", plan_list.getStorage(), plan.getStorage()));
+                    itemsVM.add(new ListItemChangePlan("Mountly Rate", plan_list.getMounthlyrate(), plan.getMounthlyrate()));
                 }
                 System.out.println("item plan" + itemsVM.toString());
                 ChangePlanViewAdapter adapter = new ChangePlanViewAdapter(getContext(), android.R.layout.simple_expandable_list_item_2, itemsVM);
@@ -164,27 +139,8 @@ public class ChangePlane_page extends Fragment {
         });
     }
 
-    public void getPlanByName(String cloud,int position){
-        RequestParams param = new RequestParams();
-        if(cloud.equals("GOOGLE"))
-            param.put("cloudProv",0);
-        else if(cloud.equals("Amazon"))
-            param.put("cloudProv",1);
-        else if(cloud.equals("Azure"))
-            param.put("cloudProv", 2);
-        else if(cloud.equals("Digital Ocean"))
-            param.put("cloudProv", 3);
-        else if(cloud.equals("VMWare"))
-            param.put("cloudProv", 4);
-        else if(cloud.equals("Unknown"))
-            param.put("cloudProv", 5);
-        //get("plan/", param, listPlan); //make list plan
-        System.out.println("prov : " + param.toString());
-        getPlan(param, position);
-    }
-
     /*send http to get plan that available*/
-    public void getPlan(RequestParams params,final int position) {
+    public void getPlan(final RequestParams params) {
         // Make RESTful webservice call using AsyncHttpClient object
         HTTPConnector.get("plan/", params, new AsyncHttpResponseHandler() {
             @Override
@@ -215,7 +171,7 @@ public class ChangePlane_page extends Fragment {
                                     json.getString("storage"));
                             listPlan.add(p);
                         }
-                        CreatePlanAvailable(position);
+                       getVM(params);
                     } else {
                         Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
                     }
@@ -242,10 +198,7 @@ public class ChangePlane_page extends Fragment {
                 for (int index = 0; index < bytes.length; index++) {
                     response += (char) bytes[index];
                 }
-/*                if(!listvm.isEmpty()){
-                    listvm.removeAll(listvm);
-                }
-                JSONObject json = null;*/
+
                 try {
                     JSONObject json = new JSONObject(response);
                     Plan plan = new Plan(
@@ -256,32 +209,10 @@ public class ChangePlane_page extends Fragment {
                             json.getString("mem"),
                             json.getString("network"),
                             json.getString("storage"));
+                    CreatePlanAvailable(plan);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                /*try {
-                    JSONArray jsonarr = new JSONArray(response);
-                    if (jsonarr.length() != 0) {
-                        for (int index = 0; index < jsonarr.length(); index++) {
-                            JSONObject json = new JSONObject(jsonarr.get(index).toString());
-                            Plan c = new Plan(
-                                    json.getString("cloudProv"),
-                                    json.getString("ip"),
-                                    json.getString("monthlyRate"),
-                                    json.getString("cpu"),
-                                    json.getString("mem"),
-                                    json.getString("network"),
-                                    json.getString("storage"));
-                            listvm.add(c);
-                        }
-                        //createView();
-                    } else {
-                        Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
     }

@@ -39,7 +39,6 @@ public class Login_page extends Fragment {
     private String username;
     // Get Password Edit View Value
     private String password;
-    private OnFragmentInteractionListener mListener;
 
     public Login_page() {
         // Required empty public constructor
@@ -97,10 +96,10 @@ public class Login_page extends Fragment {
                 for (int index = 0; index < responseBody.length; index++) {
                     response += (char) responseBody[index];
                 }
-                Log.i("res", response);
                 try {
-                    JSONObject json = new JSONObject(response);
                     if (!response.isEmpty()) {
+                        Log.i("res", response);
+                        JSONObject json = new JSONObject(response);
                         Intent intent = new Intent(getActivity(), CloudListActivity.class);
                         intent.putExtra("id", json.getString("userId"));
                         intent.putExtra("password", json.getString("password"));
@@ -127,9 +126,5 @@ public class Login_page extends Fragment {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
 

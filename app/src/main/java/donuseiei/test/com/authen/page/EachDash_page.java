@@ -122,7 +122,7 @@ public class EachDash_page extends Fragment {
         mTimer = new Runnable() {
             @Override
             public void run() {
-                updateData(params,name,ip);
+                updateData(params);
                 graph2LastXValue += 1d;
                 Log.i("value",name + ip + " " + cpu+" "+mem+" "+str+" "+net);
                 mSeries_cpu.appendData(new DataPoint(graph2LastXValue, cpu), true, 100);
@@ -146,7 +146,7 @@ public class EachDash_page extends Fragment {
         super.onPause();
     }
 
-    public void updateData(RequestParams params,final String name,final String ip){
+    public void updateData(RequestParams params){
         HTTPConnector.get("/dashboard/" + id + "/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -163,29 +163,6 @@ public class EachDash_page extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                /*try {
-                    update_json = new JSONObject(response);
-                    update_json_arr = update_json.getJSONArray("clouds");
-                    System.out.println("json arr : " + update_json_arr.toString());
-                    for (int i = 0; i < update_json_arr.length(); i++) {
-                        if(update_json_arr.getJSONObject(i).getString("cloudName").equals(name)) {
-                            JSONArray j_arr = update_json_arr.getJSONObject(i).getJSONArray("vms");
-                            for (int j = 0; j < j_arr.length(); j++) {
-                                if(j_arr.getJSONObject(j).getString("vmIP").equals(ip)) {
-                                    cpu = Double.parseDouble(j_arr.getJSONObject(j).getString("Cpu"));
-                                    mem = Double.parseDouble(j_arr.getJSONObject(j).getString("Mem"));
-                                    str = Double.parseDouble(j_arr.getJSONObject(j).getString("Storage"));
-                                    net = Double.parseDouble(j_arr.getJSONObject(j).getString("Network"));
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {

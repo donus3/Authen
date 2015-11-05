@@ -92,30 +92,6 @@ public class View_plan extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                /*try {
-                    if(!listVM.isEmpty()) {
-                        listVM.removeAll(listVM);
-                    }
-                    JSONArray jsonarr = new JSONArray(response);
-                    if (jsonarr.length() != 0) {
-                        for (int index = 0; index < jsonarr.length(); index++) {
-                            JSONObject json = new JSONObject(jsonarr.get(index).toString());
-                            Plan c = new Plan(
-                                    json.getString("cloudProv"),
-                                    json.getString("ip"),
-                                    json.getString("monthlyRate"),
-                                    json.getString("cpu"),
-                                    json.getString("mem"),
-                                    json.getString("network"),
-                                    json.getString("storage"));
-                            listVM.add(c);
-                        }
-                    }
-                    CreateView();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
             }
 
             @Override

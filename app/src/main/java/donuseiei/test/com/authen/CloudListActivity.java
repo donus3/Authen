@@ -33,12 +33,14 @@ public class CloudListActivity extends AppCompatActivity {
     private  List<ListCloud> list;
     private String id;
     private String password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         id = bundle.getString("id");
         password = bundle.getString("password");
+        Log.i("id in main",id+" "+password);
         setContentView(R.layout.activity_cloud_list);
         gridView = (GridView)findViewById(R.id.gridView);
         list = new ArrayList<>();
@@ -46,6 +48,8 @@ public class CloudListActivity extends AppCompatActivity {
         params.add("password",password);
         getData(params);
     }
+
+
     public void doSomething(){
         ListCloudAdapter adapter = new ListCloudAdapter(this,android.R.layout.simple_expandable_list_item_2,list);
         gridView.setAdapter(adapter);
