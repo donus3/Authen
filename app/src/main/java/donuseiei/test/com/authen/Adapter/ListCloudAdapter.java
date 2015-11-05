@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -60,7 +59,6 @@ public class ListCloudAdapter extends ArrayAdapter<ListCloud> {
         else {
             t.setBackgroundColor(color4);
         }
-        //((TextView)view.findViewById(R.id.btn_cloud)).setText(item.getName());
         return view;
     }
 }

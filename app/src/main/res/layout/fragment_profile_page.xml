@@ -7,6 +7,50 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Profile" />
+        android:textColorHint="@color/blue_background"
+        android:id="@+id/profile_pic" />
+
+    <ImageView
+        android:layout_width="184dp"
+        android:layout_height="184dp"
+        android:id="@+id/imageView3"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/profile_icon"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:text="Username  :"
+        android:id="@+id/textView"
+        style="@style/d" />
+
+    <TextView
+        android:layout_width="128dp"
+        android:layout_height="38dp"
+        android:text="Name          :"
+        android:id="@+id/textView2"
+        android:layout_gravity="left|center_vertical"
+        style="@style/d"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="119dp"
+        android:layout_height="37dp"
+        android:text="E-mail         :"
+        android:id="@+id/textView3"
+        style="@style/d"
+        android:layout_marginTop="75dp" />
+
+    <Button
+        android:text="Edit Profile"
+        android:id="@+id/button"
+        style="@style/button_profile" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal|bottom"
+        style="@style/button_profile" />
 
 </FrameLayout>
