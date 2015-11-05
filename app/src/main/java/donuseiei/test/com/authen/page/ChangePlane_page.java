@@ -57,23 +57,6 @@ public class ChangePlane_page extends Fragment {
     private RequestParams paramsGetPlan;
     private Button btnChange;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ChangePlane_page.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ChangePlane_page newInstance(String param1, String param2) {
-        ChangePlane_page fragment = new ChangePlane_page();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public ChangePlane_page() {
         // Required empty public constructor
     }

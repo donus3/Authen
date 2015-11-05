@@ -156,6 +156,16 @@ public class EachDash_page extends Fragment {
                     response += (char) responseBody[index];
                 }
                 try {
+                    JSONObject json = new JSONObject(response);
+                    cpu = Double.parseDouble(json.getString("Cpu"));
+                    mem = Double.parseDouble(json.getString("Mem"));
+                    str = Double.parseDouble(json.getString("Storage"));
+                    net = Double.parseDouble(json.getString("Network"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     update_json = new JSONObject(response);
                     update_json_arr = update_json.getJSONArray("clouds");
                     System.out.println("json arr : " + update_json_arr.toString());
@@ -176,7 +186,7 @@ public class EachDash_page extends Fragment {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {

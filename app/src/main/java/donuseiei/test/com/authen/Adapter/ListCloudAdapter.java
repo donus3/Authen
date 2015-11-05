@@ -1,6 +1,7 @@
 package donuseiei.test.com.authen.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,10 @@ import donuseiei.test.com.authen.R;
 
 public class ListCloudAdapter extends ArrayAdapter<ListCloud> {
     private LayoutInflater mInflater;
+    private final int color1 = Color.rgb(0,128,255);
+    private final int color2 = Color.rgb(0,204,104);
+    private final int color3 = Color.rgb(240,139,37);
+    private final int color4 = Color.rgb(255,51,51);
 
     public ListCloudAdapter(Context context, int resource,List<ListCloud> items) {
         super(context, resource);
@@ -33,13 +38,29 @@ public class ListCloudAdapter extends ArrayAdapter<ListCloud> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
+        TextView t;
         if (convertView == null) {
             view = mInflater.inflate(R.layout.list_cloud, parent, false);
+            t = (TextView)view.findViewById(R.id.btn_cloud);
         } else {
             view = convertView;
+            t = (TextView)view.findViewById(R.id.btn_cloud);
         }
         ListCloud item = getItem(position);
-        ((TextView)view.findViewById(R.id.btn_cloud)).setText(item.getName());
+        t.setText(item.getName());
+        if(position%4 == 0){
+            t.setBackgroundColor(color1);
+        }
+        else if(position%4 == 1){
+            t.setBackgroundColor(color2);
+        }
+        else if(position%4 == 2){
+            t.setBackgroundColor(color3);
+        }
+        else {
+            t.setBackgroundColor(color4);
+        }
+        //((TextView)view.findViewById(R.id.btn_cloud)).setText(item.getName());
         return view;
     }
 }

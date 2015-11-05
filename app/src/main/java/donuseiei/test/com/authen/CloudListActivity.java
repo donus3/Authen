@@ -70,8 +70,7 @@ public class CloudListActivity extends AppCompatActivity {
                     response += (char) responseBody[index];
                 }
                 try {
-                    JSONObject json = new JSONObject(response);
-                    JSONArray json_arr = json.getJSONArray("clouds");
+                    JSONArray json_arr = new JSONArray(response);
                     System.out.println("json arr : " + json_arr.length());
                     for (int i=0 ; i < json_arr.length();i++) {
                         JSONArray j_arr = json_arr.getJSONObject(i).getJSONArray("vms");

@@ -63,12 +63,12 @@ public class View_plan extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view_plan =  inflater.inflate(R.layout.fragment_view_plan, container, false);
-        getVM(params, "plan/" + id + "/");
+        getDetailPlan(params, "plan/" + id + "/");
         return view_plan;
     }
 
     /*send http to get plan that available*/
-    public void getVM(RequestParams params,String url) {
+    public void getDetailPlan(RequestParams params,String url) {
         HTTPConnector.get(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -77,6 +77,21 @@ public class View_plan extends Fragment {
                     response += (char) responseBody[index];
                 }
                 try {
+                    JSONObject json = new JSONObject(response);
+                    Plan plan = new Plan(
+                            json.getString("cloudProv"),
+                            json.getString("ip"),
+                            json.getString("monthlyRate"),
+                            json.getString("cpu"),
+                            json.getString("mem"),
+                            json.getString("network"),
+                            json.getString("storage"));
+                    CreateView(plan);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     if(!listVM.isEmpty()) {
                         listVM.removeAll(listVM);
                     }
@@ -98,7 +113,7 @@ public class View_plan extends Fragment {
                     CreateView();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
 
             @Override
@@ -108,8 +123,24 @@ public class View_plan extends Fragment {
         });
     }
 
-    public void CreateView(){
-        dropdown = (Spinner) view_plan.findViewById(R.id.spinner_vp);
+    public void CreateView(Plan p){
+        ListView lv = (ListView)view_plan.findViewById(R.id.listPlanView);
+        List<ListItemPlan> itemsVM = new ArrayList<>();
+        if(!itemsVM.isEmpty()){
+            itemsVM.removeAll(itemsVM);
+        }
+        else {
+            itemsVM.add(new ListItemPlan("Cloud Provider", p.getProv()));
+            //itemsVM.add(new ListItemPlan("IP Address", p.getIp()));
+            itemsVM.add(new ListItemPlan("CPU", p.getCpu()));
+            itemsVM.add(new ListItemPlan("Memory", p.getMemory()));
+            itemsVM.add(new ListItemPlan("Network", p.getMemory()));
+            itemsVM.add(new ListItemPlan("Storage", p.getStorage()));
+            itemsVM.add(new ListItemPlan("Mountly Rate", p.getMounthlyrate()));
+        }
+        PlanViewAdapter adapter = new PlanViewAdapter(getContext(),android.R.layout.simple_expandable_list_item_2,itemsVM);
+        lv.setAdapter(adapter);
+       /* dropdown = (Spinner) view_plan.findViewById(R.id.spinner_vp);
         if(!ips.isEmpty()){
             ips.removeAll(ips);
         }
@@ -144,7 +175,7 @@ public class View_plan extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
     }
 
     @Override
