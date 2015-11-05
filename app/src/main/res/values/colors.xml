@@ -6,6 +6,7 @@
     <color name="sapphireblue_background">#2554C7</color>
     <color name="blue_button">#2196F3</color>
     <color name="text_white">#FFFFFF</color>
+    <color name="blue_background">#4682b4</color>
     <color name="change_plan_top">#80daeb</color>
     <color name="background_cpudash">#c1ebff</color>
     <color name="background_memdash">#c1ccff </color>

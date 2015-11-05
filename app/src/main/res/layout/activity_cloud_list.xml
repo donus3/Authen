@@ -10,5 +10,10 @@
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
         android:gravity="center">
+
+        <!-- android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="2"
+        android:gravity="center_horizontal"> -->
     </GridView>
 </FrameLayout>
