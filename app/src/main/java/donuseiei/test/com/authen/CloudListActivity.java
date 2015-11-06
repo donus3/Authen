@@ -5,14 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -27,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import donuseiei.test.com.authen.Adapter.ListCloudAdapter;
+import donuseiei.test.com.authen.page.Profile_page;
 
 public class CloudListActivity extends AppCompatActivity {
     private GridView gridView;
@@ -45,7 +52,7 @@ public class CloudListActivity extends AppCompatActivity {
         gridView = (GridView)findViewById(R.id.gridView);
         list = new ArrayList<>();
         RequestParams params = new RequestParams();
-        params.add("password",password);
+        params.add("password", password);
         getData(params);
     }
 
@@ -59,7 +66,7 @@ public class CloudListActivity extends AppCompatActivity {
                 Intent intent = new Intent(CloudListActivity.this, MainActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("password", password);
-                intent.putExtra("info",list.get(position).getName());
+                intent.putExtra("info", list.get(position).getName());
                 startActivity(intent);
             }
         });
@@ -74,18 +81,18 @@ public class CloudListActivity extends AppCompatActivity {
                     response += (char) responseBody[index];
                 }
                 try {
-                    JSONArray json_arr = new JSONArray(response);
-                    /*JSONObject json = new JSONObject(response);
-                    JSONArray json_arr = json.getJSONArray("clouds");*/
-
-                    System.out.println("json arr : " + json_arr.length());
-                    for (int i=0 ; i < json_arr.length();i++) {
-                        JSONArray j_arr = json_arr.getJSONObject(i).getJSONArray("vms");
-                        for(int j =0 ;j<j_arr.length();j++){
-                            list.add(new ListCloud(json_arr.getJSONObject(i).getString("cloudName") +" : "+ j_arr.getJSONObject(j).getString("vmIP")));
+                    if (!response.isEmpty()) {
+                        JSONArray json_arr = new JSONArray(response);
+                        System.out.println("json arr : " + json_arr.length());
+                        for (int i = 0; i < json_arr.length(); i++) {
+                            JSONArray j_arr = json_arr.getJSONObject(i).getJSONArray("vms");
+                            for (int j = 0; j < j_arr.length(); j++) {
+                                list.add(new ListCloud(json_arr.getJSONObject(i).getString("cloudName") + " : " + j_arr.getJSONObject(j).getString("vmIP")));
+                            }
                         }
-                    }
-                    doSomething();
+                        doSomething();
+                    } else
+                        Toast.makeText(CloudListActivity.this, "response null", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -96,6 +103,37 @@ public class CloudListActivity extends AppCompatActivity {
                 Toast.makeText(CloudListActivity.this, "Error Code " + statusCode, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_cloudlist, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    public void replacePage(Fragment f){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container_ac, f);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        bundle.putString("password",password);
+        //bundle.putString("info", list.get(position).getName());
+        // set Fragmentclass Arguments
+        f.setArguments(bundle);
+        transaction.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.profile_cloudlistpage:
+               //replacePage(new Profile_page());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

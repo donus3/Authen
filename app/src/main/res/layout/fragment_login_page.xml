@@ -7,8 +7,9 @@
 
     <EditText
         android:textColor="#000000"
+        android:padding="5dp"
         android:background="@color/white_background"
-        android:hint="Email Address"
+        android:hint="Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -20,6 +21,7 @@
 
     <EditText
         android:textColor="#000000"
+        android:padding="5dp"
         android:background="@color/white_background"
         android:hint="Password"
         android:layout_width="wrap_content"
@@ -32,7 +34,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:textColor="@color/black"
+        android:textColor="#000000"
         android:background="@color/white_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +46,7 @@
         android:layout_alignStart="@+id/password_login" />
 
     <Button
-        android:textColor="@color/black"
+        android:textColor="#000000"
         android:background="@color/white_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

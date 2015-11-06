@@ -15,10 +15,12 @@ import donuseiei.test.com.authen.R;
 
 public class ListCloudAdapter extends ArrayAdapter<ListCloud> {
     private LayoutInflater mInflater;
-    private final int color1 = Color.rgb(64,255,146);
-    private final int color2 = Color.rgb(255,251,125);
-    private final int color3 = Color.rgb(115,235,241);
-    private final int color4 = Color.rgb(255,136,94);
+    private final int color1 = Color.rgb(17,102,28);
+    private final int color2 = Color.rgb(159,2,159);
+    private final int color3 = Color.rgb(237,99,16);
+    private final int color4 = Color.rgb(168,0,12);
+    private final int color5 = Color.rgb(247,185,24);
+    private final int color6 = Color.rgb(14,29,102);
 
     public ListCloudAdapter(Context context, int resource,List<ListCloud> items) {
         super(context, resource);
@@ -47,17 +49,23 @@ public class ListCloudAdapter extends ArrayAdapter<ListCloud> {
         }
         ListCloud item = getItem(position);
         t.setText(item.getName());
-        if(position%4 == 0){
+        if(position%6 == 0){
             t.setBackgroundColor(color1);
         }
-        else if(position%4 == 1){
+        else if(position%6 == 1){
             t.setBackgroundColor(color2);
         }
-        else if(position%4 == 2){
+        else if(position%6 == 2){
             t.setBackgroundColor(color3);
         }
-        else {
+        else if(position%6 == 3){
             t.setBackgroundColor(color4);
+        }
+        else if(position%6 == 4){
+            t.setBackgroundColor(color5);
+        }
+        else {
+            t.setBackgroundColor(color6);
         }
         return view;
     }

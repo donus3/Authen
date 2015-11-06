@@ -1,14 +1,133 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFF66"
     tools:context="donuseiei.test.com.authen.page.Bill_page">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:background="@color/white_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Bill" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:id="@+id/name_bill"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Period : "
+        android:textColor="@color/black"
+        android:id="@+id/period_bill"
+        android:layout_marginTop="45dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Month"
+        android:textColor="@color/black"
+        android:id="@+id/setMonth_bill"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:layout_width="240dp"
+        android:layout_height="32dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Service"
+        android:textColor="@color/text_white"
+        android:id="@+id/head_service"
+        android:layout_marginTop="80dp"
+        android:background="#0000CC"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="32dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Price"
+        android:textColor="@color/text_white"
+        android:id="@+id/head_price"
+        android:background="#006633"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="240dp"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listBill"
+        android:background="#FFFFFF"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="120dp"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="This month : "
+        android:id="@+id/sum_stand" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="120dp"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Arrears : "
+        android:id="@+id/arrears_stand" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="120dp"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Total : "
+        android:id="@+id/total_stand" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="101010100"
+        android:id="@+id/sum" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="100000000"
+        android:id="@+id/arrears" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="111111111"
+        android:id="@+id/total" />
 
 </FrameLayout>

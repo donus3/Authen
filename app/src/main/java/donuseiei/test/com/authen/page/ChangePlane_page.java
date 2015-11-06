@@ -1,6 +1,5 @@
 package donuseiei.test.com.authen.page;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,29 +9,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import donuseiei.test.com.authen.Adapter.ChangePlanViewAdapter;
-import donuseiei.test.com.authen.Adapter.PlanViewAdapter;
 import donuseiei.test.com.authen.HTTPConnector;
 import donuseiei.test.com.authen.ListItemChangePlan;
-import donuseiei.test.com.authen.ListItemPlan;
 import donuseiei.test.com.authen.Plan;
 import donuseiei.test.com.authen.R;
 
@@ -53,7 +43,6 @@ public class ChangePlane_page extends Fragment {
     private Spinner spinnerplan;
     private List<String> ips;
     private List<String> planName;
-    private RequestParams paramsGetPlan;
     private Button btnChange;
 
     public ChangePlane_page() {
@@ -72,8 +61,6 @@ public class ChangePlane_page extends Fragment {
             password = getArguments().getString(ARG_PARAM2);
             cloundProv = getArguments().getString("cloudName");
             ip = getArguments().getString("ip");
-            paramsGetPlan = new RequestParams();
-            paramsGetPlan.put("password", password);
         }
     }
 
@@ -94,7 +81,10 @@ public class ChangePlane_page extends Fragment {
                 updatePlan(paramsUpdate);
             }
         });
-        getPlan(paramsGetPlan);
+        RequestParams param = new RequestParams();
+        param.put("cloudProv",cloundProv);
+        Log.i("param", "1" + param.toString());
+        getPlan(param);
         return view;
     }
 
@@ -116,8 +106,6 @@ public class ChangePlane_page extends Fragment {
                 ListView lv = (ListView) view.findViewById(R.id.listChange);
                 List<ListItemChangePlan> itemsVM = new ArrayList<>();
                 Plan plan_list = listPlan.get(position);
-                ip = plan.getIp();
-                cloundProv = plan.getProv();
                 if (!itemsVM.isEmpty()) {
                     itemsVM.removeAll(itemsVM);
                 } else {
@@ -140,7 +128,7 @@ public class ChangePlane_page extends Fragment {
     }
 
     /*send http to get plan that available*/
-    public void getPlan(final RequestParams params) {
+    public void getPlan(RequestParams params) {
         // Make RESTful webservice call using AsyncHttpClient object
         HTTPConnector.get("plan/", params, new AsyncHttpResponseHandler() {
             @Override
@@ -158,23 +146,32 @@ public class ChangePlane_page extends Fragment {
                     listPlan.removeAll(listPlan);
                 }
                 try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    if (jsonArray.length() != 0) {
-                        for (int index = 0; index < jsonArray.length(); index++) {
-                            JSONObject json = new JSONObject(jsonArray.get(index).toString());
-                            Plan p = new Plan(json.getString("cloudProv"),
-                                    json.getString("ip"),
-                                    json.getString("monthlyRate"),
-                                    json.getString("cpu"),
-                                    json.getString("mem"),
-                                    json.getString("network"),
-                                    json.getString("storage"));
-                            listPlan.add(p);
+                    if(!response.isEmpty()) {
+                        Log.i("All plan",response);
+                        JSONArray jsonArray = new JSONArray(response);
+                        if (jsonArray.length() != 0) {
+                            for (int index = 0; index < jsonArray.length(); index++) {
+                                JSONObject json = new JSONObject(jsonArray.get(index).toString());
+                                Plan p = new Plan(json.getString("cloudProv"),
+                                        null,//json.getString("ip"),
+                                        json.getString("monthlyRate"),
+                                        json.getString("cpu"),
+                                        json.getString("mem"),
+                                        json.getString("network"),
+                                        json.getString("storage"));
+                                listPlan.add(p);
+                            }
+                            RequestParams param = new RequestParams();
+                           // param.put("cloudProv", cloundProv);
+                            param.put("password", password);
+                            param.put("vmIP", ip);
+                            getVM(param);
+                        } else {
+                            Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
                         }
-                       getVM(params);
-                    } else {
-                        Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
                     }
+                    else
+                        Toast.makeText(getActivity(), "null response", Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -188,31 +185,33 @@ public class ChangePlane_page extends Fragment {
         // Make RESTful webservice call using AsyncHttpClient object
         HTTPConnector.get("plan/" + id + "/", params, new AsyncHttpResponseHandler() {
             @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] bytes, Throwable throwable) {
-                Toast.makeText(getActivity(), "Error code : " + statusCode, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
             public void onSuccess(int j, Header[] headers, byte[] bytes) {
                 String response = "";
                 for (int index = 0; index < bytes.length; index++) {
                     response += (char) bytes[index];
                 }
-
                 try {
-                    JSONObject json = new JSONObject(response);
-                    Plan plan = new Plan(
-                            json.getString("cloudProv"),
-                            json.getString("ip"),
-                            json.getString("monthlyRate"),
-                            json.getString("cpu"),
-                            json.getString("mem"),
-                            json.getString("network"),
-                            json.getString("storage"));
-                    CreatePlanAvailable(plan);
+                    if(!response.isEmpty()) {
+                        JSONObject json = new JSONObject(response);
+                        Plan plan = new Plan(
+                                json.getString("cloudProv"),
+                                null,//json.getString("ip"),
+                                json.getString("monthlyRate"),
+                                json.getString("cpu"),
+                                json.getString("mem"),
+                                json.getString("network"),
+                                json.getString("storage"));
+                        CreatePlanAvailable(plan);
+                    }
+                    else
+                        Toast.makeText(getActivity(), "null response", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] bytes, Throwable throwable) {
+                Toast.makeText(getActivity(), "Error code : " + statusCode, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -220,7 +219,11 @@ public class ChangePlane_page extends Fragment {
         HTTPConnector.get("/update/plan/" + id + "/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                getVM(paramsGetPlan);
+                //getVM();
+                RequestParams param = new RequestParams();
+                param.put("cloudProv",cloundProv);
+                Log.i("param", "1" + param.toString());
+                getPlan(param);
             }
 
             @Override

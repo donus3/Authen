@@ -46,7 +46,8 @@
         <activity
             android:name=".CloudListActivity"
             android:label="@string/title_activity_cloud_list"
-            android:theme="@style/AppTheme_First" >
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme" >
         </activity>
     </application>
 

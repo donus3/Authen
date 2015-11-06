@@ -9,7 +9,9 @@ import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;
 
 public class HTTPConnector {
-    private static final String BASE_URL = "http://203.151.92.185:3000/";
+    //private static final String BASE_URL = "http://203.151.92.185:3000/";
+    private static final String BASE_URL = "http://203.151.92.185:8000/";
+   // private static final String BASE_URL = "http://161.246.138.197:3000/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 

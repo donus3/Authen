@@ -37,19 +37,6 @@ public class Registe_page extends Fragment {
     private String name;
     private String email;
     private String password;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    // TODO: Rename and change types and number of parameters
-    public static Registe_page newInstance(String param1, String param2) {
-        Registe_page fragment = new Registe_page();
-        Bundle args = new Bundle();
-       // args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public Registe_page() {
         // Required empty public constructor

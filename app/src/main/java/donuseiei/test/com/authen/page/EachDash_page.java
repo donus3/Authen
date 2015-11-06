@@ -155,14 +155,19 @@ public class EachDash_page extends Fragment {
                     response += (char) responseBody[index];
                 }
                 try {
-                    JSONObject json = new JSONObject(response);
-                    cpu = Double.parseDouble(json.getString("Cpu"));
-                    mem = Double.parseDouble(json.getString("Mem"));
-                    str = Double.parseDouble(json.getString("Storage"));
-                    net = Double.parseDouble(json.getString("Network"));
+                    if(!response.isEmpty()) {
+                        JSONObject json = new JSONObject(response);
+                        cpu = Double.parseDouble(json.getString("Cpu"));
+                        mem = Double.parseDouble(json.getString("Mem"));
+                        str = Double.parseDouble(json.getString("Storage"));
+                        net = Double.parseDouble(json.getString("Network"));
+                    }
+                    else
+                        Toast.makeText(getActivity(), "null response", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {

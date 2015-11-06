@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
@@ -110,6 +112,9 @@ public class Login_page extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+               /* AsyncHttpClient myClient = new AsyncHttpClient();
+                PersistentCookieStore myCookieStore = new PersistentCookieStore(getContext());
+                myClient.setCookieStore(myCookieStore);*/
             }
 
             @Override
