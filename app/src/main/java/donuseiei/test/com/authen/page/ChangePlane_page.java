@@ -109,11 +109,11 @@ public class ChangePlane_page extends Fragment {
                 if (!itemsVM.isEmpty()) {
                     itemsVM.removeAll(itemsVM);
                 } else {
-                    itemsVM.add(new ListItemChangePlan("CPU", plan_list.getCpu(), plan.getCpu()));
-                    itemsVM.add(new ListItemChangePlan("Memory", plan_list.getMemory(), plan.getMemory()));
-                    itemsVM.add(new ListItemChangePlan("Network", plan_list.getMemory(), plan.getMemory()));
-                    itemsVM.add(new ListItemChangePlan("Storage", plan_list.getStorage(), plan.getStorage()));
-                    itemsVM.add(new ListItemChangePlan("Mountly Rate", plan_list.getMounthlyrate(), plan.getMounthlyrate()));
+                    itemsVM.add(new ListItemChangePlan("CPU", plan.getCpu()+"GHz"+"/"+plan_list.getCpu()+"GHz", plan.getCpu()));
+                    itemsVM.add(new ListItemChangePlan("Memory",  plan.getMemory()+"GB"+"/"+plan_list.getMemory()+"GB", plan.getMemory()));
+                    itemsVM.add(new ListItemChangePlan("Network", plan.getMemory()+"GB"+"/"+plan_list.getMemory()+"GB", plan.getMemory()));
+                    itemsVM.add(new ListItemChangePlan("Storage", plan.getStorage()+"GB"+"/"+plan_list.getStorage()+"GB", plan.getStorage()));
+                    itemsVM.add(new ListItemChangePlan("Mountly Rate", plan.getMounthlyrate()+"USD"+"/"+plan_list.getMounthlyrate()+"USD", plan.getMounthlyrate()));
                 }
                 System.out.println("item plan" + itemsVM.toString());
                 ChangePlanViewAdapter adapter = new ChangePlanViewAdapter(getContext(), android.R.layout.simple_expandable_list_item_2, itemsVM);

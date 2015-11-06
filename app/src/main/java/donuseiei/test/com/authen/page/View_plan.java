@@ -110,11 +110,11 @@ public class View_plan extends Fragment {
         else {
             itemsVM.add(new ListItemPlan("Cloud Provider", p.getProv()));
             //itemsVM.add(new ListItemPlan("IP Address", p.getIp()));
-            itemsVM.add(new ListItemPlan("CPU", p.getCpu()));
-            itemsVM.add(new ListItemPlan("Memory", p.getMemory()));
-            itemsVM.add(new ListItemPlan("Network", p.getMemory()));
-            itemsVM.add(new ListItemPlan("Storage", p.getStorage()));
-            itemsVM.add(new ListItemPlan("Mountly Rate", p.getMounthlyrate()));
+            itemsVM.add(new ListItemPlan("CPU", p.getCpu()+"GHz"));
+            itemsVM.add(new ListItemPlan("Memory", p.getMemory()+"GB"));
+            itemsVM.add(new ListItemPlan("Network", p.getMemory()+"GB"));
+            itemsVM.add(new ListItemPlan("Storage", p.getStorage()+"GB"));
+            itemsVM.add(new ListItemPlan("Mountly Rate", p.getMounthlyrate()+"USD"));
         }
         PlanViewAdapter adapter = new PlanViewAdapter(getContext(),android.R.layout.simple_expandable_list_item_2,itemsVM);
         lv.setAdapter(adapter);
