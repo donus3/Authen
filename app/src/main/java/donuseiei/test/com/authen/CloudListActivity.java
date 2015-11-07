@@ -1,6 +1,7 @@
 
 package donuseiei.test.com.authen;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -73,6 +74,7 @@ public class CloudListActivity extends AppCompatActivity {
     }
 
     public void getData(RequestParams params){
+        final ProgressDialog progressDialog = ProgressDialog.show(this, "In progress", "Loading");
         HTTPConnector.get("/dashboard/" + id + "/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -96,10 +98,12 @@ public class CloudListActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                progressDialog.dismiss();
                 Toast.makeText(CloudListActivity.this, "Error Code " + statusCode, Toast.LENGTH_LONG).show();
             }
         });
@@ -111,17 +115,6 @@ public class CloudListActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_cloudlist, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-    public void replacePage(Fragment f){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_ac, f);
-        Bundle bundle = new Bundle();
-        bundle.putString("id", id);
-        bundle.putString("password",password);
-        //bundle.putString("info", list.get(position).getName());
-        // set Fragmentclass Arguments
-        f.setArguments(bundle);
-        transaction.commit();
     }
 
     @Override

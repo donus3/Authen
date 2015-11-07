@@ -1,10 +1,12 @@
 package donuseiei.test.com.authen.Adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import donuseiei.test.com.authen.ListItemPlan;
@@ -42,6 +44,7 @@ public class PlanViewAdapter extends ArrayAdapter<ListItemPlan> {
         ListItemPlan item = getItem(position);
         ((TextView)view.findViewById(R.id.elementTitle)).setText(item.getTitle());
         ((TextView)view.findViewById(R.id.elementDetail)).setText(item.getDetail());
+        ((ImageView)view.findViewById(R.id.image_view_plan)).setImageResource(item.getIcon());
 
         return view;
     }

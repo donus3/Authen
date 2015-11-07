@@ -4,58 +4,94 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
         android:orientation="vertical"
         android:id="@+id/container_ac"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RadioGroup
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
-                android:background="@color/blue_button">
-                <RadioButton
-                    android:id="@+id/btnDash"
-                    style="@style/navbar_button"
-                    android:drawableTop="@mipmap/ic_assessment_black_36dp_w"
-                    android:text="Dash"
-                    android:layout_height="74dp" />
-                <RadioButton
-                    android:id="@+id/btnPlan"
-                    style="@style/navbar_button"
-                    android:drawableTop="@mipmap/plan"
-                    android:text="Plan"
-                    android:layout_marginLeft="0dp"
-                    android:layout_height="match_parent" />
-                <RadioButton
-                    android:id="@+id/btnBill"
-                    style="@style/navbar_button"
-                    android:drawableTop="@mipmap/ic_payment_black_36dp_w"
-                    android:text="Bill"
-                    android:layout_marginLeft="0dp"
-                    android:layout_height="match_parent" />
-                <RadioButton
-                    android:id="@+id/btnReport"
-                    style="@style/navbar_button"
-                    android:drawableTop="@mipmap/ic_assignment_black_36dp_w"
-                    android:text="Report"
-                    android:layout_marginLeft="0dp"
-                    android:layout_height="match_parent" />
-                <RadioButton
-                    android:id="@+id/btnMail"
-                    style="@style/navbar_button"
-                    android:drawableTop="@mipmap/ic_email_black_36dp_w"
-                    android:text="Mail"
-                    android:layout_marginLeft="0dp"
-                    android:layout_height="match_parent" />
-            </RadioGroup>
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@color/blue_button">
+            <RadioButton
+                android:id="@+id/btnDash"
+                style="@style/navbar_button"
+                android:drawableTop="@mipmap/ic_assessment_black_36dp_w"
+                android:text="Dash"
+                android:layout_height="74dp" />
+            <RadioButton
+                android:id="@+id/btnPlan"
+                style="@style/navbar_button"
+                android:drawableTop="@mipmap/plan"
+                android:text="Plan"
+                android:layout_marginLeft="0dp"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/btnBill"
+                style="@style/navbar_button"
+                android:drawableTop="@mipmap/ic_payment_black_36dp_w"
+                android:text="Bill"
+                android:layout_marginLeft="0dp"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/btnReport"
+                style="@style/navbar_button"
+                android:drawableTop="@mipmap/ic_assignment_black_36dp_w"
+                android:text="Report"
+                android:layout_marginLeft="0dp"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/btnMail"
+                style="@style/navbar_button"
+                android:drawableTop="@mipmap/ic_email_black_36dp_w"
+                android:text="Mail"
+                android:layout_marginLeft="0dp"
+                android:layout_height="match_parent" />
+        </RadioGroup>
+    </LinearLayout>
 </LinearLayout>
+<!--
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v4.app.FragmentTabHost
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/tabhost">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:id="@+id/tab_main"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:layout_marginBottom="-4dp"/>
+        </LinearLayout>
+    </android.support.v4.app.FragmentTabHost>
+</LinearLayout>-->

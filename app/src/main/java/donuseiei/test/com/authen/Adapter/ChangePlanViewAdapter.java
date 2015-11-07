@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class ChangePlanViewAdapter extends ArrayAdapter<ListItemChangePlan>{
         ((TextView)view.findViewById(R.id.changeElementTitle)).setText(item.getTitle());
         ((TextView)view.findViewById(R.id.changeElementDetailNew)).setText(item.getDetailNew());
         ((TextView)view.findViewById(R.id.changeElementDetailOld)).setText(item.getDetailOld());
+        ((ImageView)view.findViewById(R.id.image_view_changeplan)).setImageResource(item.getIcon());
         return view;
     }
 }

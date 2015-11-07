@@ -1,5 +1,6 @@
 package donuseiei.test.com.authen.page;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class ChangePlane_page extends Fragment {
     private List<String> ips;
     private List<String> planName;
     private Button btnChange;
-
+    private ProgressDialog progressDialog;
     public ChangePlane_page() {
         // Required empty public constructor
     }
@@ -68,6 +69,8 @@ public class ChangePlane_page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        progressDialog = ProgressDialog.show(getActivity(),"in progress","loading");
         view = inflater.inflate(R.layout.fragment_change_plane_page, container, false);
         btnChange = (Button)view.findViewById(R.id.btn_change);
         btnChange.setOnClickListener(new View.OnClickListener() {
@@ -75,15 +78,14 @@ public class ChangePlane_page extends Fragment {
             public void onClick(View v) {
                 RequestParams paramsUpdate = new RequestParams();
                 paramsUpdate.put("password", password);
-                paramsUpdate.put("ip", ip);
-                paramsUpdate.put("plan", indexPlan);
+                paramsUpdate.put("vmIP", ip);
+                paramsUpdate.put("planNum", indexPlan);
                 paramsUpdate.put("cloudProv", cloundProv);
                 updatePlan(paramsUpdate);
             }
         });
         RequestParams param = new RequestParams();
         param.put("cloudProv",cloundProv);
-        Log.i("param", "1" + param.toString());
         getPlan(param);
         return view;
     }
@@ -109,14 +111,20 @@ public class ChangePlane_page extends Fragment {
                 if (!itemsVM.isEmpty()) {
                     itemsVM.removeAll(itemsVM);
                 } else {
-                    itemsVM.add(new ListItemChangePlan("CPU", plan.getCpu()+"GHz"+"/"+plan_list.getCpu()+"GHz", plan.getCpu()));
-                    itemsVM.add(new ListItemChangePlan("Memory",  plan.getMemory()+"GB"+"/"+plan_list.getMemory()+"GB", plan.getMemory()));
-                    itemsVM.add(new ListItemChangePlan("Network", plan.getMemory()+"GB"+"/"+plan_list.getMemory()+"GB", plan.getMemory()));
-                    itemsVM.add(new ListItemChangePlan("Storage", plan.getStorage()+"GB"+"/"+plan_list.getStorage()+"GB", plan.getStorage()));
-                    itemsVM.add(new ListItemChangePlan("Mountly Rate", plan.getMounthlyrate()+"USD"+"/"+plan_list.getMounthlyrate()+"USD", plan.getMounthlyrate()));
+                    itemsVM.add(new ListItemChangePlan("CPU", plan_list.getCpu()+" GHz",
+                            plan.getCpu()+" GHz", R.drawable.cpu));
+                    itemsVM.add(new ListItemChangePlan("Memory", plan_list.getMemory()+" GB",
+                            plan.getMemory()+" GB", R.drawable.ram));
+                    itemsVM.add(new ListItemChangePlan("Network", plan_list.getMemory()+" GB",
+                            plan.getMemory()+" GB", R.drawable.storage));
+                    itemsVM.add(new ListItemChangePlan("Storage", plan_list.getStorage()+" GB",
+                            plan.getStorage()+" GB", R.drawable.network));
+                    itemsVM.add(new ListItemChangePlan("Mountly Rate", plan_list.getMounthlyrate()+" USD",
+                            plan.getMounthlyrate()+" USD", R.drawable.monthly_rate));
                 }
                 System.out.println("item plan" + itemsVM.toString());
-                ChangePlanViewAdapter adapter = new ChangePlanViewAdapter(getContext(), android.R.layout.simple_expandable_list_item_2, itemsVM);
+                ChangePlanViewAdapter adapter = new ChangePlanViewAdapter(getContext(),
+                        android.R.layout.simple_expandable_list_item_2, itemsVM);
                 lv.setAdapter(adapter);
             }
 
@@ -125,6 +133,7 @@ public class ChangePlane_page extends Fragment {
 
             }
         });
+        progressDialog.dismiss();
     }
 
     /*send http to get plan that available*/
@@ -216,19 +225,27 @@ public class ChangePlane_page extends Fragment {
         });
     }
     public void updatePlan(RequestParams params){
-        HTTPConnector.get("/update/plan/" + id + "/", params, new AsyncHttpResponseHandler() {
+        HTTPConnector.get("update/plan/" + id + "/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                //getVM();
-                RequestParams param = new RequestParams();
-                param.put("cloudProv",cloundProv);
-                Log.i("param", "1" + param.toString());
-                getPlan(param);
+                String response = "";
+                for (int index = 0; index < responseBody.length; index++) {
+                    response += (char) responseBody[index];
+                }
+                if(!response.isEmpty()) {
+                    Log.i("update plan", response);
+                    RequestParams param = new RequestParams();
+                    param.put("cloudProv", cloundProv);
+                    getPlan(param);
+                }
+                else{
+                    Toast.makeText(getActivity(), "Do it again!", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
+                Toast.makeText(getActivity(), "Error code " + statusCode, Toast.LENGTH_LONG).show();
             }
         });
     }

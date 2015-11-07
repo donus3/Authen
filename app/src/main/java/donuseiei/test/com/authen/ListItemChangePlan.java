@@ -4,11 +4,21 @@ public class ListItemChangePlan {
     private String title;
     private String detailNew;
     private String detailOld;
+    private Integer icon;
 
-    public ListItemChangePlan(String title, String detailNew, String detailOld) {
-        this.title = title;
+    public ListItemChangePlan(String title, String detailNew, String detailOld, Integer icon) {
         this.detailNew = detailNew;
+        this.title = title;
         this.detailOld = detailOld;
+        this.icon = icon;
+    }
+
+    public Integer getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Integer icon) {
+        this.icon = icon;
     }
 
     public String getTitle() {

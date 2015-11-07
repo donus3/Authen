@@ -1,5 +1,7 @@
 package donuseiei.test.com.authen.page;
 
+import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -67,6 +69,7 @@ public class View_plan extends Fragment {
 
     /*send http to get plan that available*/
     public void getDetailPlan(RequestParams params,String url) {
+        final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "In progress", "Loading");
         HTTPConnector.get(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -92,10 +95,12 @@ public class View_plan extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                progressDialog.dismiss();
                 Toast.makeText(getActivity(), "Error Code " + statusCode, Toast.LENGTH_LONG).show();
             }
         });
@@ -108,13 +113,13 @@ public class View_plan extends Fragment {
             itemsVM.removeAll(itemsVM);
         }
         else {
-            itemsVM.add(new ListItemPlan("Cloud Provider", p.getProv()));
+            itemsVM.add(new ListItemPlan("Cloud Provider", p.getProv(),R.drawable.cloud));
             //itemsVM.add(new ListItemPlan("IP Address", p.getIp()));
-            itemsVM.add(new ListItemPlan("CPU", p.getCpu()+"GHz"));
-            itemsVM.add(new ListItemPlan("Memory", p.getMemory()+"GB"));
-            itemsVM.add(new ListItemPlan("Network", p.getMemory()+"GB"));
-            itemsVM.add(new ListItemPlan("Storage", p.getStorage()+"GB"));
-            itemsVM.add(new ListItemPlan("Mountly Rate", p.getMounthlyrate()+"USD"));
+            itemsVM.add(new ListItemPlan("CPU", p.getCpu()+" GHz", R.drawable.cpu));
+            itemsVM.add(new ListItemPlan("Memory", p.getMemory()+" GB", R.drawable.ram));
+            itemsVM.add(new ListItemPlan("Network", p.getMemory()+" GB", R.drawable.network));
+            itemsVM.add(new ListItemPlan("Storage", p.getStorage()+" GB", R.drawable.storage));
+            itemsVM.add(new ListItemPlan("Mountly Rate", p.getMounthlyrate()+" USD", R.drawable.monthly_rate));
         }
         PlanViewAdapter adapter = new PlanViewAdapter(getContext(),android.R.layout.simple_expandable_list_item_2,itemsVM);
         lv.setAdapter(adapter);

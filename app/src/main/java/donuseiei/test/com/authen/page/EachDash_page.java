@@ -1,5 +1,6 @@
 package donuseiei.test.com.authen.page;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -7,11 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,18 +18,13 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import donuseiei.test.com.authen.Adapter.PlanViewAdapter;
 import donuseiei.test.com.authen.HTTPConnector;
-import donuseiei.test.com.authen.ListItemPlan;
-import donuseiei.test.com.authen.Plan;
 import donuseiei.test.com.authen.R;
 
 
@@ -62,6 +53,7 @@ public class EachDash_page extends Fragment {
     private String name;
     private String ip;
     private GraphView graph_cpu;
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +73,8 @@ public class EachDash_page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_each_dash_page, container, false);
+
+        progressDialog = ProgressDialog.show(getActivity(), "In progress", "Loading");
 
         v_cpu = (TextView)rootView.findViewById(R.id.text_cpu);
         v_mem = (TextView)rootView.findViewById(R.id.text_mem);
@@ -109,12 +103,15 @@ public class EachDash_page extends Fragment {
     }
     public void init(GraphView graph,LineGraphSeries<DataPoint> list){
         graph.addSeries(list);
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(100);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("time");
+        graph.getGridLabelRenderer().setNumHorizontalLabels(2);
+        graph.getViewport().setMinX(-60);
+        graph.getViewport().setMaxX(0);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(100);
+        graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setXAxisBoundsManual(false);
     }
     @Override
     public void onResume() {
@@ -161,6 +158,7 @@ public class EachDash_page extends Fragment {
                         mem = Double.parseDouble(json.getString("Mem"));
                         str = Double.parseDouble(json.getString("Storage"));
                         net = Double.parseDouble(json.getString("Network"));
+                        progressDialog.dismiss();
                     }
                     else
                         Toast.makeText(getActivity(), "null response", Toast.LENGTH_LONG).show();
@@ -171,6 +169,7 @@ public class EachDash_page extends Fragment {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                progressDialog.dismiss();
                 Toast.makeText(getActivity(), "Error Code " + statusCode, Toast.LENGTH_LONG).show();
             }
         });

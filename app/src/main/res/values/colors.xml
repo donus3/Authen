@@ -12,4 +12,5 @@
     <color name="background_memdash">#c1ccff </color>
     <color name="background_storagedash">#ccffc1</color>
     <color name="background_netdash">#ffc1cc</color>
+    <color name="backgroud_actionbar">#2196f3</color>
 </resources>

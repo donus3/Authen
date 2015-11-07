@@ -91,6 +91,7 @@ public class Login_page extends Fragment {
     }
 
     public void get(RequestParams params) {
+        final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "In progress", "Loading");
         HTTPConnector.get("login/" + username + "/", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -115,10 +116,12 @@ public class Login_page extends Fragment {
                /* AsyncHttpClient myClient = new AsyncHttpClient();
                 PersistentCookieStore myCookieStore = new PersistentCookieStore(getContext());
                 myClient.setCookieStore(myCookieStore);*/
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                progressDialog.dismiss();
                 Toast.makeText(getActivity(), "Error Code " + statusCode, Toast.LENGTH_LONG).show();
             }
         });
