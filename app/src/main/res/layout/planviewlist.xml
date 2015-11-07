@@ -14,7 +14,8 @@
                 android:id="@+id/image_view_plan"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"/>
         </TableRow>
 
         <LinearLayout
