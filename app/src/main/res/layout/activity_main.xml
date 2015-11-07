@@ -25,35 +25,30 @@
             <RadioButton
                 android:id="@+id/btnDash"
                 style="@style/navbar_button"
-                android:drawableTop="@mipmap/ic_assessment_black_36dp_w"
-                android:text="Dash"
+                android:drawableTop="@drawable/dashboard"
                 android:layout_height="74dp" />
             <RadioButton
                 android:id="@+id/btnPlan"
                 style="@style/navbar_button"
-                android:drawableTop="@mipmap/plan"
-                android:text="Plan"
+                android:drawableTop="@drawable/plan"
                 android:layout_marginLeft="0dp"
                 android:layout_height="match_parent" />
             <RadioButton
                 android:id="@+id/btnBill"
                 style="@style/navbar_button"
-                android:drawableTop="@mipmap/ic_payment_black_36dp_w"
-                android:text="Bill"
+                android:drawableTop="@drawable/bill"
                 android:layout_marginLeft="0dp"
                 android:layout_height="match_parent" />
             <RadioButton
                 android:id="@+id/btnReport"
                 style="@style/navbar_button"
-                android:drawableTop="@mipmap/ic_assignment_black_36dp_w"
-                android:text="Report"
+                android:drawableTop="@drawable/report"
                 android:layout_marginLeft="0dp"
                 android:layout_height="match_parent" />
             <RadioButton
                 android:id="@+id/btnMail"
                 style="@style/navbar_button"
-                android:drawableTop="@mipmap/ic_email_black_36dp_w"
-                android:text="Mail"
+                android:drawableTop="@drawable/mail"
                 android:layout_marginLeft="0dp"
                 android:layout_height="match_parent" />
         </RadioGroup>

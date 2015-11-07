@@ -50,6 +50,10 @@ public class EachDash_page extends Fragment {
     private double mem = 0;
     private double str = 0;
     private double net = 0;
+    private String rcpu;
+    private String rmem;
+    private String rstr;
+    private String rnet;
     private String name;
     private String ip;
     private GraphView graph_cpu;
@@ -126,10 +130,10 @@ public class EachDash_page extends Fragment {
                 mSeries_mem.appendData(new DataPoint(graph2LastXValue, mem), true, 100);
                 mSeries_storage.appendData(new DataPoint(graph2LastXValue, str), true, 100);
                 mSeries_net.appendData(new DataPoint(graph2LastXValue, net), true, 100);
-                v_cpu.setText("CPU : " + cpu + "%");
-                v_mem.setText("Memory : "+mem+"%");
-                v_str.setText("Storage : "+str+"%");
-                v_net.setText("Network : " + net + "%");
+                v_cpu.setText("CPU : " + cpu + "% (from " + rcpu + " GHz)");
+                v_mem.setText("Memory : "+mem+"% (from "+rmem + " GB)");
+                v_str.setText("Storage : "+str+"% (from "+rstr + " GB)");
+                v_net.setText("Network : " + net + "% (from "+rnet + " GB)");
 
                 mHandler.postDelayed(this, 1000);
             }
@@ -154,10 +158,14 @@ public class EachDash_page extends Fragment {
                 try {
                     if(!response.isEmpty()) {
                         JSONObject json = new JSONObject(response);
-                        cpu = Double.parseDouble(json.getString("Cpu"));
-                        mem = Double.parseDouble(json.getString("Mem"));
-                        str = Double.parseDouble(json.getString("Storage"));
-                        net = Double.parseDouble(json.getString("Network"));
+                        cpu = Math.round(Double.parseDouble(json.getString("Cpu")));
+                        mem = Math.round(Double.parseDouble(json.getString("Mem")));
+                        str = Math.round(Double.parseDouble(json.getString("Storage")));
+                        net = Math.round(Double.parseDouble(json.getString("Network")));
+                        rcpu = json.getString("rCpu");
+                        rmem  = json.getString("rMem");
+                        rstr = json.getString("rStorage");
+                        rnet = json.getString("rNetwork");
                         progressDialog.dismiss();
                     }
                     else

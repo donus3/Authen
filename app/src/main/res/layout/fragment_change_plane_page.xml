@@ -3,21 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <Spinner
-        android:id="@+id/spinner_vp_planAvailable"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp" />
-    <Button
-        android:id="@+id/btn_change"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="change"
-        android:layout_gravity="center_horizontal"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_margin="20dp">
+        <Spinner
+            android:id="@+id/spinner_vp_planAvailable"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:id="@+id/btn_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="change"
+            android:layout_gravity="center_horizontal"
+            android:shadowColor="#000000"
+            android:textColor="@color/text_white"
+            android:background="@color/button_change"/>
+    </LinearLayout>
     <ListView
         android:id="@+id/listChange"
         android:layout_width="wrap_content"

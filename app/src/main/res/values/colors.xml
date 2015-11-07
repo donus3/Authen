@@ -13,4 +13,6 @@
     <color name="background_storagedash">#ccffc1</color>
     <color name="background_netdash">#ffc1cc</color>
     <color name="backgroud_actionbar">#2196f3</color>
+    <color name="button_change">#42ccca</color>
+    <color name="background_green">#42ccca</color>
 </resources>
