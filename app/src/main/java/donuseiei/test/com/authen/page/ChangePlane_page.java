@@ -112,15 +112,15 @@ public class ChangePlane_page extends Fragment {
                     itemsVM.removeAll(itemsVM);
                 } else {
                     itemsVM.add(new ListItemChangePlan("CPU", plan_list.getCpu()+" GHz",
-                            plan.getCpu()+" GHz", R.drawable.cpu));
+                            "(current: "+plan.getCpu()+" GHz)", R.drawable.cpu));
                     itemsVM.add(new ListItemChangePlan("Memory", plan_list.getMemory()+" GB",
-                            plan.getMemory()+" GB", R.drawable.ram));
+                            "(current: "+plan.getMemory()+" GB)", R.drawable.ram));
                     itemsVM.add(new ListItemChangePlan("Network", plan_list.getMemory()+" GB",
-                            plan.getMemory()+" GB", R.drawable.storage));
+                            "(current: "+plan.getMemory()+" GB)", R.drawable.storage));
                     itemsVM.add(new ListItemChangePlan("Storage", plan_list.getStorage()+" GB",
-                            plan.getStorage()+" GB", R.drawable.network));
+                            "(current: "+plan.getStorage()+" GB)", R.drawable.network));
                     itemsVM.add(new ListItemChangePlan("Mountly Rate", plan_list.getMounthlyrate()+" USD",
-                            plan.getMounthlyrate()+" USD", R.drawable.monthly_rate));
+                            "(current: "+plan.getMounthlyrate()+" USD)", R.drawable.monthly_rate));
                 }
                 System.out.println("item plan" + itemsVM.toString());
                 ChangePlanViewAdapter adapter = new ChangePlanViewAdapter(getContext(),

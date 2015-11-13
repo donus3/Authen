@@ -14,9 +14,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/background_cpudash">
+            android:orientation="vertical">
+            <!--android:background="@color/background_cpudash">-->
             <TextView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CPU"
@@ -24,6 +25,7 @@
                 android:textStyle="bold"
                 android:id="@+id/text_cpu"/>
             <com.jjoe64.graphview.GraphView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:id="@+id/graph_cpu" />
@@ -31,9 +33,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/background_memdash">
+            android:orientation="vertical">
+            <!--android:background="@color/background_memdash">-->
             <TextView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Memory"
@@ -41,6 +44,7 @@
                 android:textStyle="bold"
                 android:id="@+id/text_mem"/>
             <com.jjoe64.graphview.GraphView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:id="@+id/graph_mem" />
@@ -48,9 +52,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/background_storagedash">
+            android:orientation="vertical">
+            <!--android:background="@color/background_storagedash">-->
             <TextView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Storage"
@@ -58,6 +63,7 @@
                 android:textStyle="bold"
                 android:id="@+id/text_storage"/>
             <com.jjoe64.graphview.GraphView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:id="@+id/graph_storage" />
@@ -65,9 +71,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/background_netdash">
+            android:orientation="vertical">
+            <!--android:background="@color/background_netdash">-->
             <TextView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Network"
@@ -75,6 +82,7 @@
                 android:textStyle="bold"
                 android:id="@+id/text_net"/>
             <com.jjoe64.graphview.GraphView
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:id="@+id/graph_net" />

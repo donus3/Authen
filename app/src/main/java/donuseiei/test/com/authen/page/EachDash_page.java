@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -22,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import donuseiei.test.com.authen.HTTPConnector;
@@ -108,14 +111,17 @@ public class EachDash_page extends Fragment {
     public void init(GraphView graph,LineGraphSeries<DataPoint> list){
         graph.addSeries(list);
         graph.getGridLabelRenderer().setHorizontalAxisTitle("time");
-        graph.getGridLabelRenderer().setNumHorizontalLabels(2);
-        graph.getViewport().setMinX(-60);
-        graph.getViewport().setMaxX(0);
+        //graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[]{"60 seconds", "now"});
+        staticLabelsFormatter.setVerticalLabels(new String[]{"0%", "50%","100%"});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(100);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(100);
-        graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setXAxisBoundsManual(false);
     }
     @Override
     public void onResume() {
