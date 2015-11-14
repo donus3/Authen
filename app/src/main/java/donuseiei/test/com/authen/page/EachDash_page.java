@@ -110,7 +110,7 @@ public class EachDash_page extends Fragment {
     }
     public void init(GraphView graph,LineGraphSeries<DataPoint> list){
         graph.addSeries(list);
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("time");
+        //graph.getGridLabelRenderer().setHorizontalAxisTitle("time");
         //graph.getGridLabelRenderer().setNumHorizontalLabels(3);
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[]{"60 seconds", "now"});

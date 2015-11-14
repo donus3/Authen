@@ -1,67 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:id="@+id/container_ac"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RadioGroup
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:background="@color/blue_button">
-            <RadioButton
-                android:id="@+id/btnDash"
-                style="@style/navbar_button"
-                android:drawableTop="@drawable/dashboard"
-                android:layout_height="74dp" />
-            <RadioButton
-                android:id="@+id/btnPlan"
-                style="@style/navbar_button"
-                android:drawableTop="@drawable/plan"
-                android:layout_marginLeft="0dp"
-                android:layout_height="match_parent" />
-            <RadioButton
-                android:id="@+id/btnBill"
-                style="@style/navbar_button"
-                android:drawableTop="@drawable/bill"
-                android:layout_marginLeft="0dp"
-                android:layout_height="match_parent" />
-            <RadioButton
-                android:id="@+id/btnReport"
-                style="@style/navbar_button"
-                android:drawableTop="@drawable/report"
-                android:layout_marginLeft="0dp"
-                android:layout_height="match_parent" />
-            <RadioButton
-                android:id="@+id/btnMail"
-                style="@style/navbar_button"
-                android:drawableTop="@drawable/mail"
-                android:layout_marginLeft="0dp"
-                android:layout_height="match_parent" />
-        </RadioGroup>
-    </LinearLayout>
-</LinearLayout>
-<!--
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <android.support.v4.app.FragmentTabHost
-
+<android.support.v4.app.FragmentTabHost
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@android:id/tabhost">
@@ -70,23 +8,21 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-            <FrameLayout
+                <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1">
-
-                <FrameLayout
+                    <FrameLayout
                     android:id="@+id/tab_main"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"/>
-            </FrameLayout>
+                    </FrameLayout>
             <TabWidget
+                android:background="@color/blue_background"
                 android:id="@android:id/tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:layout_marginBottom="-4dp"/>
+                android:layout_weight="0"/>
         </LinearLayout>
-    </android.support.v4.app.FragmentTabHost>
-</LinearLayout>-->
+</android.support.v4.app.FragmentTabHost>

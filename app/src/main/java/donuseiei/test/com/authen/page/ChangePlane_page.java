@@ -1,6 +1,8 @@
 package donuseiei.test.com.authen.page;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -76,12 +78,26 @@ public class ChangePlane_page extends Fragment {
         btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequestParams paramsUpdate = new RequestParams();
-                paramsUpdate.put("password", password);
-                paramsUpdate.put("vmIP", ip);
-                paramsUpdate.put("planNum", indexPlan);
-                paramsUpdate.put("cloudProv", cloundProv);
-                updatePlan(paramsUpdate);
+                AlertDialog.Builder builder =
+                        new AlertDialog.Builder(getActivity());
+                builder.setMessage("Are you sure?");
+                builder.setPositiveButton("Of course", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        RequestParams paramsUpdate = new RequestParams();
+                        paramsUpdate.put("password", password);
+                        paramsUpdate.put("vmIP", ip);
+                        paramsUpdate.put("planNum", indexPlan);
+                        paramsUpdate.put("cloudProv", cloundProv);
+                        updatePlan(paramsUpdate);
+                    }
+                });
+                builder.setNegativeButton("not now", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //dialog.dismiss();
+                    }
+                });
+                builder.show();
             }
         });
         RequestParams param = new RequestParams();
