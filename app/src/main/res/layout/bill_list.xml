@@ -10,12 +10,12 @@
         android:layout_width="240dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/service"
-        android:background="#0000CC"/>
+        android:background="#FFFFFF"/>
 
     <FrameLayout
         android:layout_width="145dp"
         android:layout_height="match_parent"
-        android:background="#006633">
+        android:background="#FFFFFF">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

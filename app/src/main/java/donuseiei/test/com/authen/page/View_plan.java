@@ -54,7 +54,7 @@ public class View_plan extends Fragment {
             params = new RequestParams();
             params.put("password", password);
             params.put("vmIP",ip);
-            //params.put("cloudProv",cloudProv);
+            params.put("cloudProv",cloudProv);
         }
     }
 

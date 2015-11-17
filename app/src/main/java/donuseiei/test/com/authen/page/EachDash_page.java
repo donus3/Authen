@@ -59,7 +59,6 @@ public class EachDash_page extends Fragment {
     private String rnet;
     private String name;
     private String ip;
-    private GraphView graph_cpu;
     private ProgressDialog progressDialog;
 
     @Override
@@ -73,6 +72,7 @@ public class EachDash_page extends Fragment {
             params = new RequestParams();
             params.put("password",password);
             params.put("vmIP",ip);
+            params.put("cloudProv",name);
         }
         list_name = new ArrayList<>();
     }
@@ -88,7 +88,7 @@ public class EachDash_page extends Fragment {
         v_str = (TextView)rootView.findViewById(R.id.text_storage);
         v_net = (TextView)rootView.findViewById(R.id.text_net);
 
-        graph_cpu = (GraphView) rootView.findViewById(R.id.graph_cpu);
+        GraphView graph_cpu = (GraphView) rootView.findViewById(R.id.graph_cpu);
         mSeries_cpu = new LineGraphSeries<>();
         init(graph_cpu,mSeries_cpu);
 

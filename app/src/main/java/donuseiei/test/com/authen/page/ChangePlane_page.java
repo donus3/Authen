@@ -217,16 +217,23 @@ public class ChangePlane_page extends Fragment {
                 }
                 try {
                     if(!response.isEmpty()) {
-                        JSONObject json = new JSONObject(response);
-                        Plan plan = new Plan(
-                                json.getString("cloudProv"),
-                                null,//json.getString("ip"),
-                                json.getString("monthlyRate"),
-                                json.getString("cpu"),
-                                json.getString("mem"),
-                                json.getString("network"),
-                                json.getString("storage"));
-                        CreatePlanAvailable(plan);
+                        Log.i("All plan",response);
+                        JSONArray jsonArray = new JSONArray(response);
+                        if (jsonArray.length() != 0) {
+                            for (int index = 0; index < jsonArray.length(); index++) {
+                                JSONObject json = new JSONObject(jsonArray.get(index).toString());
+                                Plan p = new Plan(json.getString("cloudProv"),
+                                        null,//json.getString("ip"),
+                                        json.getString("monthlyRate"),
+                                        json.getString("cpu"),
+                                        json.getString("mem"),
+                                        json.getString("network"),
+                                        json.getString("storage"));
+                                CreatePlanAvailable(p);
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
+                        }
                     }
                     else
                         Toast.makeText(getActivity(), "null response", Toast.LENGTH_LONG).show();

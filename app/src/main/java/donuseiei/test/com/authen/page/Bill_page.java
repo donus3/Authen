@@ -4,37 +4,38 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import donuseiei.test.com.authen.Adapter.BillAdapter;
 import donuseiei.test.com.authen.Bill;
 import donuseiei.test.com.authen.HTTPConnector;
-import donuseiei.test.com.authen.ListBill;
 import donuseiei.test.com.authen.R;
 
 public class Bill_page extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
+    private static final String ARG_PARAM1 = "id";
+    private static final String ARG_PARAM2 = "password";
+    TextView t;
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private String id;
     private String password;
     private String cloudProv;
@@ -67,12 +68,12 @@ public class Bill_page extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            id = getArguments().getString(ARG_PARAM1);
-            password = getArguments().getString(ARG_PARAM2);
-            cloudProv = getArguments().getString("cloudName");
-            ip = getArguments().getString("ip");
+            id = getArguments().getString("id");
+            password = getArguments().getString("password");
+            cloudProv = getArguments().getString("info").split(" : ")[0];
+            ip = getArguments().getString("info").split(" : ")[1];
             params = new RequestParams();
-            params.put("password", password);
+            params.put("password",password);
             params.put("vmIP",ip);
             params.put("cloudProv",cloudProv);
         }
@@ -83,10 +84,7 @@ public class Bill_page extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         bill_page =  inflater.inflate(R.layout.fragment_bill_page, container, false);
-       /* getBillPage(params, "bill/" + id + "/");*/
-        ////////////////////TEST//////////////////////
-        Bill bill = new Bill("Pai","July","4500","200","4700");
-        CreateView(bill);
+        getBillPage(params, "bill/vm/" + id + "/");
         return bill_page;
     }
 
@@ -100,12 +98,17 @@ public class Bill_page extends Fragment {
                 }
                 try {
                     JSONObject json = new JSONObject(response);
+                    JSONArray json_arr = json.getJSONArray("plans");
                     Bill bill = new Bill(
-                            json.getString("name"),
-                            json.getString("month"),
-                            json.getString("sum"),
-                            json.getString("arrears"),
-                            json.getString("total"));
+                            json_arr.getJSONObject(0).getString("cloudProv"),
+                            json.getString("timestamp"),
+                            json_arr.getJSONObject(0).getString("monthlyRate"),
+                            //json.getString("arrears"),
+                            "0",
+                            json_arr.getJSONObject(0).getString("cpu"),
+                            json_arr.getJSONObject(0).getString("mem"),
+                            json_arr.getJSONObject(0).getString("network"),
+                            json_arr.getJSONObject(0).getString("storage"));
                     CreateView(bill);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -120,18 +123,24 @@ public class Bill_page extends Fragment {
     }
 
     public void CreateView(Bill b){
-        ListView lv = (ListView)bill_page.findViewById(R.id.listBill);
-        List<ListBill> itemsBill = new ArrayList<>();
-        if(!itemsBill.isEmpty()){
-            itemsBill.removeAll(itemsBill);
-        }
-        else {
-            itemsBill.add(new ListBill("GG","500"));
-            itemsBill.add(new ListBill("GL","1500"));
-            itemsBill.add(new ListBill("HF","2500"));
-        }
-        BillAdapter adapter = new BillAdapter(getContext(),android.R.layout.simple_expandable_list_item_2,itemsBill);
-        lv.setAdapter(adapter);
+        TextView t = (TextView)bill_page.findViewById(R.id.bill_cpu);
+        t.setText(b.getCpu()+" GHz");
+        t = (TextView)bill_page.findViewById(R.id.bill_mem);
+        t.setText(b.getMem()+" GB");
+        t = (TextView)bill_page.findViewById(R.id.bill_network);
+        t.setText(b.getNetwork()+" GB");
+        t = (TextView)bill_page.findViewById(R.id.bill_storage);
+        t.setText(b.getStorage()+" GB");
+        t = (TextView)bill_page.findViewById(R.id.rate);
+        t.setText("$"+b.getRate());
+        t = (TextView)bill_page.findViewById(R.id.arrears);
+        t.setText("$"+b.getArrears());
+        t = (TextView)bill_page.findViewById(R.id.total);
+        t.setText("$"+b.getTotal());
+        t = (TextView)bill_page.findViewById(R.id.cloud_bill);
+        t.setText(b.getName()+" ");
+        t = (TextView)bill_page.findViewById(R.id.month_bill);
+        t.setText(b.getMonth());
     }
 
     @Override

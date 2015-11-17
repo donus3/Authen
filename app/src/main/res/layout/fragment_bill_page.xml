@@ -1,133 +1,206 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView
     android:layout_height="match_parent"
-    android:background="#FFFF66"
-    tools:context="donuseiei.test.com.authen.page.Bill_page">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:text=" "
+                android:textColor="#004C99"
+                android:textStyle="bold"
+                android:id="@+id/cloud_bill"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name"
-        android:textColor="@color/black"
-        android:id="@+id/name_bill"
-        android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textSize="28dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/month_bill"
+                android:layout_marginTop="75dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Period : "
-        android:textColor="@color/black"
-        android:id="@+id/period_bill"
-        android:layout_marginTop="45dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Month"
-        android:textColor="@color/black"
-        android:id="@+id/setMonth_bill"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="45dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_________________"
+                android:textSize="28dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/line1"
+                android:layout_marginTop="95dp" />
 
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="32dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Service"
-        android:textColor="@color/text_white"
-        android:id="@+id/head_service"
-        android:layout_marginTop="80dp"
-        android:background="#0000CC"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_________________"
+                android:textSize="28dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/line2"
+                android:layout_marginTop="275dp" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="32dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Price"
-        android:textColor="@color/text_white"
-        android:id="@+id/head_price"
-        android:background="#006633"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="240dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU :"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/head_cpu"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="145dp" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listBill"
-        android:background="#FFFFFF"
-        android:layout_marginTop="110dp"
-        android:layout_marginBottom="100dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Memory :"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/head_mem"
+                android:layout_marginRight="39dp"
+                android:layout_marginTop="180dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:layout_marginRight="120dp"
-        android:layout_gravity="right|bottom"
-        android:textColor="#000000"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="This month : "
-        android:id="@+id/sum_stand" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network :"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/head_network"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="215dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="120dp"
-        android:layout_gravity="right|bottom"
-        android:textColor="#000000"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Arrears : "
-        android:id="@+id/arrears_stand" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage :"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/head_storage"
+                android:layout_marginRight="37.5dp"
+                android:layout_marginTop="250dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="120dp"
-        android:layout_gravity="right|bottom"
-        android:textColor="#000000"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Total : "
-        android:id="@+id/total_stand" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="215dp"
+                android:layout_marginLeft="200dp"
+                android:textSize="22dp"
+                android:id="@+id/bill_network"
+                android:textColor="@color/black"
+                android:text="-"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="right|bottom"
-        android:textColor="#000000"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="101010100"
-        android:id="@+id/sum" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:layout_marginLeft="200dp"
+                android:textSize="22dp"
+                android:id="@+id/bill_storage"
+                android:textColor="@color/black"
+                android:text="-"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="right|bottom"
-        android:textColor="#000000"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="100000000"
-        android:id="@+id/arrears" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="180dp"
+                android:textSize="22dp"
+                android:id="@+id/bill_mem"
+                android:textColor="@color/black"
+                android:text="-"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="right|bottom"
-        android:textColor="#000000"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="111111111"
-        android:id="@+id/total" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="145dp"
+                android:layout_marginLeft="200dp"
+                android:textSize="22dp"
+                android:id="@+id/bill_cpu"
+                android:textColor="@color/black"
+                android:text="-"/>
 
-</FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="325dp"
+                android:layout_marginRight="55dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:text="This month :"
+                android:id="@+id/head_sum" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="360dp"
+                android:layout_marginRight="36dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:text="Arrears :"
+                android:id="@+id/head_arrears" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="395dp"
+                android:layout_marginRight="26dp"
+                android:textSize="22dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:text="Total :"
+                android:id="@+id/head_total" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="325dp"
+                android:layout_marginLeft="200dp"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:text="-"
+                android:id="@+id/rate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="360dp"
+                android:layout_marginLeft="200dp"
+                android:textColor="@color/black"
+
+                android:textSize="22dp"
+                android:text="-"
+                android:id="@+id/arrears" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="395dp"
+                android:layout_marginLeft="200dp"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:text="-"
+                android:id="@+id/total" />
+
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>
+

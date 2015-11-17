@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import donuseiei.test.com.authen.page.Bill_page;
+import donuseiei.test.com.authen.page.Dash_page;
+import donuseiei.test.com.authen.page.Date_Report;
 import donuseiei.test.com.authen.page.EachDash_page;
 import donuseiei.test.com.authen.page.Mail_page;
 import donuseiei.test.com.authen.page.Plan_page;

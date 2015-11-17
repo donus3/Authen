@@ -1,83 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/gradient"
-    android:id="@+id/login_frag"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:id="@+id/login_frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:drawableTop="@mipmap/ic_email_black_36dp_w"
+            android:layout_height="150dp"
+            android:id="@+id/imageView"
+            android:src="@mipmap/cloud_icon"
+            android:layout_marginTop="53dp"
+            android:layout_gravity="center" />
 
-    <EditText
-        android:textColor="#000000"
-        android:padding="5dp"
-        android:background="@color/white_background"
-        android:hint="Username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/username_login"
-        android:layout_marginTop="91dp"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@mipmap/cmc_icon"
+            android:layout_margin="20dp"
+            android:layout_gravity="center" />
+            <EditText
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:background="@color/white_background"
+                android:hint="Username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/username_login"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center" />
 
-    <EditText
-        android:textColor="#000000"
-        android:padding="5dp"
-        android:background="@color/white_background"
-        android:hint="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password_login"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/username_login"
-        android:layout_centerHorizontal="true" />
+            <EditText
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:background="@color/white_background"
+                android:hint="Password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/password_login"
+                android:layout_marginTop="22dp"
+                android:layout_gravity="center" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Button
+                    android:textColor="@color/text_white"
+                    android:background="@color/blue_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:id="@+id/submit_login"
+                    android:layout_marginTop="23dp"
+                    android:layout_gravity="center" />
 
-    <Button
-        android:textColor="#000000"
-        android:background="@color/white_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/submit_login"
-        android:layout_marginTop="63dp"
-        android:layout_below="@+id/password_login"
-        android:layout_alignLeft="@+id/password_login"
-        android:layout_alignStart="@+id/password_login" />
+                <Button
+                    android:textColor="@color/text_white"
+                    android:background="#f84525"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:id="@+id/btn_register"
+                    android:layout_marginTop="23dp"
+                    android:layout_gravity="center" />
+                </LinearLayout>
 
-    <Button
-        android:textColor="#000000"
-        android:background="@color/white_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/btn_register"
-        android:layout_alignTop="@+id/submit_login"
-        android:layout_alignRight="@+id/password_login"
-        android:layout_alignEnd="@+id/password_login" />
-
-    <ImageView
-        android:layout_width="150dp"
-        android:drawableTop="@mipmap/ic_email_black_36dp_w"
-        android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:src="@mipmap/cloud_icon"
-        android:layout_marginTop="53dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@mipmap/cmc_icon"
-        android:layout_marginBottom="29dp"
-        android:layout_alignBottom="@+id/username_login"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_marginTop="155dp" />
-
-</RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
