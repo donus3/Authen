@@ -41,11 +41,12 @@ public class CloudListActivity extends AppCompatActivity {
     private  List<ListCloud> list;
     private String id;
     private String password;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
         id = bundle.getString("id");
         password = bundle.getString("password");
         Log.i("id in main",id+" "+password);
@@ -56,7 +57,6 @@ public class CloudListActivity extends AppCompatActivity {
         params.add("password", password);
         getData(params);
     }
-
 
     public void doSomething(){
         ListCloudAdapter adapter = new ListCloudAdapter(this,android.R.layout.simple_expandable_list_item_2,list);
@@ -122,7 +122,16 @@ public class CloudListActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.profile_cloudlistpage:
-               //replacePage(new Profile_page());
+                try {
+                    Intent intent_profile = new Intent(this,Profile_page.class);
+                    intent_profile.putExtra("idPassCloudProvIP",bundle);
+                    startActivity(intent_profile);
+                }
+                catch (Exception e){
+                    System.out.println("error in cloudlist menu");
+                }
+                /*replacePage(new Profile_page());
+                tog.setBackgroundColor(oldColor);*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

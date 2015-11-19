@@ -51,6 +51,7 @@ public class Mail_page extends Fragment {
             list_mail = new ArrayList<>();
             params = new RequestParams();
             params.put("vmIP",ip);
+            params.put("password",password);
         }
     }
 
@@ -67,7 +68,7 @@ public class Mail_page extends Fragment {
         final ListView listView = (ListView)rootView.findViewById(R.id.list_mail);
         MailAdapter adapter = new MailAdapter(getContext(),android.R.layout.simple_expandable_list_item_2,list_mail);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+/*        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id1) {
                 Detail_Massage ldf = new Detail_Massage ();
@@ -84,7 +85,7 @@ public class Mail_page extends Fragment {
                 f.addToBackStack("mail");
                 f.commit();
             }
-        });
+        });*/
     }
     @Override
     public void onDetach() {

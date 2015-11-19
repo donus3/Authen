@@ -1,27 +1,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="20dp">
-
-    <TextView
-        android:id="@+id/detail_title_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Topic : -"
-        android:textStyle="bold"
-        android:textSize="20dp"/>
-    <TextView
-        android:id="@+id/detail_detail_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detail : -"
-        android:textSize="20dp"/>
-    <Button
-        android:id="@+id/btn_back_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_gravity="center"/>
-
+    android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/detail_title_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Topic : -"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/detail_detail_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail : -"
+                android:textSize="20dp"/>
+            <Button
+                android:id="@+id/btn_back_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

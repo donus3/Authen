@@ -82,6 +82,7 @@ public class EachDash_page extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_each_dash_page, container, false);
 
         progressDialog = ProgressDialog.show(getActivity(), "In progress", "Loading");
+        progressDialog.setCanceledOnTouchOutside(true);
 
         v_cpu = (TextView)rootView.findViewById(R.id.text_cpu);
         v_mem = (TextView)rootView.findViewById(R.id.text_mem);
@@ -110,8 +111,6 @@ public class EachDash_page extends Fragment {
     }
     public void init(GraphView graph,LineGraphSeries<DataPoint> list){
         graph.addSeries(list);
-        //graph.getGridLabelRenderer().setHorizontalAxisTitle("time");
-        //graph.getGridLabelRenderer().setNumHorizontalLabels(3);
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[]{"60 seconds", "now"});
         staticLabelsFormatter.setVerticalLabels(new String[]{"0%", "50%","100%"});
@@ -131,7 +130,6 @@ public class EachDash_page extends Fragment {
             public void run() {
                 updateData(params);
                 graph2LastXValue += 1d;
-                Log.i("value",name + ip + " " + cpu+" "+mem+" "+str+" "+net);
                 mSeries_cpu.appendData(new DataPoint(graph2LastXValue, cpu), true, 100);
                 mSeries_mem.appendData(new DataPoint(graph2LastXValue, mem), true, 100);
                 mSeries_storage.appendData(new DataPoint(graph2LastXValue, str), true, 100);

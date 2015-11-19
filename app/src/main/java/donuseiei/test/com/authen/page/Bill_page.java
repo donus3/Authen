@@ -1,6 +1,7 @@
 package donuseiei.test.com.authen.page;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,23 +43,6 @@ public class Bill_page extends Fragment {
     private String ip;
     private View bill_page;
     private RequestParams params;
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Bill_page.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Bill_page newInstance(String param1, String param2) {
-        Bill_page fragment = new Bill_page();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public Bill_page() {
         // Required empty public constructor
@@ -89,6 +73,7 @@ public class Bill_page extends Fragment {
     }
 
     public void getBillPage(RequestParams params,String url){
+        final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "In progress", "Loading");
         HTTPConnector.get(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -113,11 +98,13 @@ public class Bill_page extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Toast.makeText(getActivity(), "Error Code " + statusCode, Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
             }
         });
     }

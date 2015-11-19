@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_gravity="center"
+        android:gravity="center"
         android:id="@+id/login_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
     <TextView
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white_background"
@@ -23,7 +22,6 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -36,7 +34,6 @@
         android:layout_marginTop="27dp" />
 
     <EditText
-        android:layout_gravity="center"
         android:hint="Email Address"
         android:padding="5dp"
         android:background="@color/white_background"
@@ -50,7 +47,6 @@
         android:layout_marginTop="30dp" />
 
     <EditText
-        android:layout_gravity="center"
         android:hint="Password"
         android:padding="5dp"
         android:background="@color/white_background"
@@ -64,7 +60,6 @@
         android:layout_marginTop="30dp"/>
 
     <Button
-        android:layout_gravity="center"
         android:textColor="@color/text_white"
         android:background="@color/blue_button"
         android:layout_width="wrap_content"
@@ -74,7 +69,6 @@
         android:layout_marginTop="29dp" />
 
     <Button
-        android:layout_gravity="center"
         android:textColor="@color/text_white"
         android:background="#f84525"
         android:layout_width="wrap_content"

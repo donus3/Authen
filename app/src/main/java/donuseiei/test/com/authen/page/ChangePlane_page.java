@@ -71,8 +71,6 @@ public class ChangePlane_page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        progressDialog = ProgressDialog.show(getActivity(),"in progress","loading");
         view = inflater.inflate(R.layout.fragment_change_plane_page, container, false);
         btnChange = (Button)view.findViewById(R.id.btn_change);
         btnChange.setOnClickListener(new View.OnClickListener() {
@@ -80,18 +78,19 @@ public class ChangePlane_page extends Fragment {
             public void onClick(View v) {
                 AlertDialog.Builder builder =
                         new AlertDialog.Builder(getActivity());
-                builder.setMessage("Are you sure?");
-                builder.setPositiveButton("Of course", new DialogInterface.OnClickListener() {
+                builder.setMessage("Do you need to Change Your Plan?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         RequestParams paramsUpdate = new RequestParams();
                         paramsUpdate.put("password", password);
-                        paramsUpdate.put("vmIP", ip);
-                        paramsUpdate.put("planNum", indexPlan);
+                        paramsUpdate.put("ip", ip);
+                        paramsUpdate.put("plan", indexPlan+1);
+                        Log.i("indexplan",""+(indexPlan+1));
                         paramsUpdate.put("cloudProv", cloundProv);
                         updatePlan(paramsUpdate);
                     }
                 });
-                builder.setNegativeButton("not now", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //dialog.dismiss();
@@ -154,6 +153,8 @@ public class ChangePlane_page extends Fragment {
 
     /*send http to get plan that available*/
     public void getPlan(RequestParams params) {
+        progressDialog = ProgressDialog.show(getActivity(), "in progress", "loading");
+        progressDialog.setCanceledOnTouchOutside(true);
         // Make RESTful webservice call using AsyncHttpClient object
         HTTPConnector.get("plan/", params, new AsyncHttpResponseHandler() {
             @Override
@@ -187,7 +188,7 @@ public class ChangePlane_page extends Fragment {
                                 listPlan.add(p);
                             }
                             RequestParams param = new RequestParams();
-                           // param.put("cloudProv", cloundProv);
+                            param.put("cloudProv", cloundProv);
                             param.put("password", password);
                             param.put("vmIP", ip);
                             getVM(param);
@@ -217,7 +218,7 @@ public class ChangePlane_page extends Fragment {
                 }
                 try {
                     if(!response.isEmpty()) {
-                        Log.i("All plan",response);
+/*                        Log.i("All VM",response);
                         JSONArray jsonArray = new JSONArray(response);
                         if (jsonArray.length() != 0) {
                             for (int index = 0; index < jsonArray.length(); index++) {
@@ -233,7 +234,16 @@ public class ChangePlane_page extends Fragment {
                             }
                         } else {
                             Toast.makeText(getActivity(), "No Any Fucking Plan , Go to ur school", Toast.LENGTH_LONG);
-                        }
+                        }*/
+                        JSONObject json = new JSONObject(response);
+                        Plan p = new Plan(json.getString("cloudProv"),
+                                null,//json.getString("ip"),
+                                json.getString("monthlyRate"),
+                                json.getString("cpu"),
+                                json.getString("mem"),
+                                json.getString("network"),
+                                json.getString("storage"));
+                        CreatePlanAvailable(p);
                     }
                     else
                         Toast.makeText(getActivity(), "null response", Toast.LENGTH_LONG).show();
@@ -255,7 +265,8 @@ public class ChangePlane_page extends Fragment {
                 for (int index = 0; index < responseBody.length; index++) {
                     response += (char) responseBody[index];
                 }
-                if(!response.isEmpty()) {
+                if(response.equals("true")) {
+                    Toast.makeText(getActivity(), "Change plan was success!", Toast.LENGTH_LONG).show();
                     Log.i("update plan", response);
                     RequestParams param = new RequestParams();
                     param.put("cloudProv", cloundProv);
@@ -264,6 +275,7 @@ public class ChangePlane_page extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Do it again!", Toast.LENGTH_LONG).show();
                 }
+
             }
 
             @Override

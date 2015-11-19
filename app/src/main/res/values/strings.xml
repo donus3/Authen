@@ -16,4 +16,5 @@
     <string name="title_activity_main_manager">MainManager</string>
     <string name="serverip">203.151.92.185:3000</string>
     <string name="title_activity_cloud_list">Over All</string>
+    <string name="title_activity_adding_cloud_page">AddingCloud_page</string>
 </resources>

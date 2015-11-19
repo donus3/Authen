@@ -1,56 +1,75 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profile_frag"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="donuseiei.test.com.authen.page.Profile_page">
-
-    <!-- TODO: Update blank fragment layout -->
+    android:gravity="center"
+    android:orientation="vertical">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="@color/blue_background"
-        android:id="@+id/profile_pic" />
-
-    <ImageView
-        android:layout_width="184dp"
-        android:layout_height="184dp"
-        android:id="@+id/imageView3"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/profile_icon"
-        android:layout_marginTop="30dp" />
-
-    <TextView
-        android:text="Username  :"
-        android:id="@+id/textView"
-        style="@style/d" />
-
-    <TextView
-        android:layout_width="128dp"
-        android:layout_height="38dp"
-        android:text="Name          :"
-        android:id="@+id/textView2"
-        android:layout_gravity="left|center_vertical"
-        style="@style/d"
-        android:layout_marginTop="40dp" />
-
-    <TextView
-        android:layout_width="119dp"
-        android:layout_height="37dp"
-        android:text="E-mail         :"
-        android:id="@+id/textView3"
-        style="@style/d"
-        android:layout_marginTop="75dp" />
-
-    <Button
-        android:text="Edit Profile"
-        android:id="@+id/button"
-        style="@style/button_profile" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal|bottom"
-        style="@style/button_profile" />
+        android:text="Profile"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name :"
+                        android:id="@+id/tUsername"
+                        android:layout_marginTop="30dp"
+                        android:textSize="20dp" />
 
-</FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/sUsername"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="30dp"
+                        android:textSize="18dp"
+                        android:layout_column="5" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="left">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="E-mail : "
+                        android:id="@+id/tEmail"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" -"
+                        android:id="@+id/sEmail"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18dp"
+                        android:layout_column="5" />
+                    </LinearLayout>
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="45dp"
+                        android:text="Edit Profile"
+                        android:id="@+id/btn_edit"
+                        android:layout_marginTop="30dp"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:text="Add Cloud Account"
+                        android:id="@+id/btn_addcloud" />
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="45dp"
+                        android:text="Logout"
+                        android:id="@+id/btn_logout" />
+</LinearLayout>

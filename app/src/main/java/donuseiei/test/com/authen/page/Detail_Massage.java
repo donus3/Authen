@@ -50,16 +50,6 @@ public class Detail_Massage extends Fragment {
         ((Button)v.findViewById(R.id.btn_back_msg)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Mail_page ldf = new Mail_page ();
-                Bundle bundle = new Bundle();
-                bundle.putString("id",id);
-                bundle.putString("password",password);
-                bundle.putString("info", cloudProv + " : " + ip);
-                ldf.setArguments(bundle);
-                FragmentTransaction f = getFragmentManager().beginTransaction();
-                f.replace(R.id.tab_main, ldf);
-                f.addToBackStack(null);
-                f.commit();*/
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack ("mail", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
@@ -70,6 +60,14 @@ public class Detail_Massage extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack("mail", FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack("mail", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
 }

@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="donuseiei.test.com.authen.page.Prediction_page"
+    android:orientation="vertical"
+    android:gravity="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU : "
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/predict_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="prediction" />
+            <TextView
+                android:id="@+id/predict_current_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="current" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Memory : "
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/predict_mem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="prediction" />
+            <TextView
+                android:id="@+id/predict_current_mem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="current" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage : "
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/predict_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="prediction" />
+            <TextView
+                android:id="@+id/predict_current_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="current" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network : "
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/predict_net"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="prediction" />
+            <TextView
+                android:id="@+id/predict_current_net"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="current" />
+        </LinearLayout>
+
+</LinearLayout>
